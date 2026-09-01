@@ -175,11 +175,7 @@ export default function Waitlist({ compact = false }: { compact?: boolean }) {
           disabled={status === "loading"}
         />
         <button type="submit" disabled={status === "loading"}>
-          {status === "loading"
-            ? "CONNECTING..."
-            : channel === "email"
-              ? "EMAIL ME WHEN IT DROPS ↗"
-              : "TEXT ME WHEN IT DROPS ↗"}
+          {status === "loading" ? "CONNECTING..." : "JOIN DROP LIST ↗"}
         </button>
       </form>
 
@@ -189,7 +185,7 @@ export default function Waitlist({ compact = false }: { compact?: boolean }) {
         </p>
       ) : (
         <p className="consent-copy consent-sms">
-          By entering your number and clicking “TEXT ME WHEN IT DROPS,” you agree to receive recurring marketing and promotional text messages from Noctive at the number provided. Consent is not a condition of purchase. Msg &amp; data rates may apply. Msg frequency varies. Reply HELP for help or STOP to cancel. See our <Link href="/privacy">Privacy Policy</Link> and <Link href="/terms">Terms</Link>.
+          By entering your number and clicking “JOIN DROP LIST,” you agree to receive recurring marketing and promotional text messages from Noctive at the number provided. Consent is not a condition of purchase. Msg &amp; data rates may apply. Msg frequency varies. Reply HELP for help or STOP to cancel. See our <Link href="/privacy">Privacy Policy</Link> and <Link href="/terms">Terms</Link>.
         </p>
       )}
 

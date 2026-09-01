@@ -12,7 +12,7 @@ const divisions = [
     number: "01",
     name: "WEAR",
     status: "DROP 001 / ACTIVE",
-    copy: "Limited apparel, releases and collaborations under the Noctive name.",
+    copy: "Limited apparel and collaborations made for the hours after dark.",
     href: "/wear",
     featured: true,
   },
@@ -20,14 +20,14 @@ const divisions = [
     number: "02",
     name: "EVENTS",
     status: "LIVE / SELECTIVE",
-    copy: "Noctive in the room — artists, sound, visuals and live experiences.",
+    copy: "The nights we’d actually go to — artists, sound, visuals and the room around them.",
     href: "/events",
   },
   {
     number: "03",
     name: "STUDIO",
     status: "SPECIAL PROJECTS",
-    copy: "Original concepts, campaigns, collaborations and visual projects.",
+    copy: "Original concepts, campaign worlds, collaborations and visual projects.",
     href: "/studio",
   },
 ];
@@ -101,21 +101,21 @@ export default function Home() {
       </section>
 
       <section className="world section" id="world">
-        <div className="section-index">00 / THE WORLD</div>
+        <div className="section-index">00 / NOCTIVE</div>
         <div className="world-grid">
           <div>
-            <p className="eyebrow">NOCTIVE / ONE NAME</p>
-            <h2>NOT JUST<br />A SHOW.</h2>
+            <p className="eyebrow">NOCTIVE / ONE POINT OF VIEW</p>
+            <h2>WE MAKE WHAT<br /><span>WE WANT.</span></h2>
           </div>
           <div className="copy-block">
             <p>
-              Noctive moves across apparel, live experiences and visual culture.
-              Different formats. One identity.
+              The clothes we’d wear. The nights we’d go to. The visuals we’d keep.
+              Noctive is one point of view across all of it.
             </p>
             <p>
-              Right now the focus is Wear. <strong className="inline-strong">After Dark</strong> is the first release.
+              Right now that point of view starts with <strong className="inline-strong">After Dark</strong> — our first apparel release.
             </p>
-            <strong>ONE NAME. DIFFERENT FORMS.</strong>
+            <strong>BUILT FOR AFTER DARK.</strong>
           </div>
         </div>
       </section>
@@ -142,17 +142,17 @@ export default function Home() {
         <div className="section-index">02 / DROP 001</div>
         <div className="wear-stage">
           <div className="wear-art">
-            <Image src="/noctive-poster.png" alt="Noctive After Dark collection teaser" fill sizes="(max-width: 900px) 100vw, 54vw" />
+            <Image src="/after-dark-teaser.png" alt="After Dark collection teaser — Noctive" fill sizes="(max-width: 900px) 100vw, 58vw" priority />
             <div className="wear-art-shade" />
             <div className="wear-grid-overlay" />
-            <div className="wear-watermark">AFTER DARK</div>
             <div className="wear-code">NCTV / W-001 / 26</div>
+            <div className="wear-teaser-label">VISUAL 001 / AFTER DARK</div>
           </div>
           <div className="wear-copy">
             <p className="eyebrow">DROP 001 / ACCESS LIST OPEN</p>
             <h2>AFTER DARK</h2>
             <p className="wear-lead">
-              The first Noctive apparel release. Product and campaign previews will unlock in stages.
+              The first Noctive apparel release. Details surface in stages. The access list gets the first notice.
             </p>
             <div className="drop-meta">
               <span>NOCTIVE / WEAR</span>
@@ -161,7 +161,7 @@ export default function Home() {
               <span>DATE / UNANNOUNCED</span>
             </div>
             <Waitlist compact />
-            <Link className="text-link" href="/wear">OPEN DROP 001 ↗</Link>
+            <Link className="text-link" href="/wear">EXPLORE DROP 001 ↗</Link>
           </div>
         </div>
       </section>
@@ -177,10 +177,10 @@ export default function Home() {
         <div className="system-grid">
           <div className="system-lead">
             <p className="eyebrow">CURRENT SIGNAL</p>
-            <h2>BUILDING<br />IN PUBLIC.</h2>
+            <h2>FIRST<br /><span>SIGNAL.</span></h2>
           </div>
           <div className="system-list">
-            <Link href="/wear" className="system-row"><span>01</span><strong>AFTER DARK</strong><em>DROP 001 / FORMING</em><b>WEAR ↗</b></Link>
+            <Link href="/wear" className="system-row"><span>01</span><strong>AFTER DARK</strong><em>DROP 001 / ACCESS OPEN</em><b>WEAR ↗</b></Link>
             <Link href="/events" className="system-row"><span>02</span><strong>EVENTS</strong><em>NEXT DATE / UNANNOUNCED</em><b>OPEN ↗</b></Link>
             <Link href="/studio" className="system-row"><span>03</span><strong>STUDIO</strong><em>PROJECTS / DEVELOPING</em><b>OPEN ↗</b></Link>
           </div>
