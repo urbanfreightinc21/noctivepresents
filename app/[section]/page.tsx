@@ -87,7 +87,7 @@ function WearPage() {
           </div>
           <div className="drop-access-panel">
             <p className="drop-access-copy">
-              No countdown yet. No filler previews. Join the access list and we&apos;ll send the release notice when After Dark is ready.
+              Join the list for the first look, release date and launch notice for After Dark. Email or text — your choice.
             </p>
             <Waitlist />
           </div>
@@ -117,7 +117,7 @@ function WearPage() {
       </section>
 
       <section className="statement-strip">
-        <span>THE FIRST COLLECTION WILL BE SHOWN IN PIECES.</span>
+        <span>DETAILS SURFACE IN STAGES. ACCESS GETS THE FIRST SIGNAL.</span>
       </section>
 
       <section className="section wear-notes">
@@ -125,8 +125,8 @@ function WearPage() {
         <div className="wear-notes-grid">
           <h2>BUILT AS<br />A LABEL.</h2>
           <div>
-            <p>After Dark is the first Noctive apparel release — not event merchandise and not a one-off logo print.</p>
-            <p>Designs, campaign imagery and release details will appear here as the collection gets closer.</p>
+            <p>After Dark is the first Noctive apparel release. The standard is simple: make clothes we&apos;d actually wear.</p>
+            <p>The same idea carries through everything else — nights we&apos;d go to, visuals we&apos;d keep and collaborations that make sense in the Noctive world.</p>
             <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="text-link">FOLLOW @NOCTIVEPRESENTS ↗</a>
           </div>
         </div>
