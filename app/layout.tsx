@@ -2,11 +2,15 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "NOCTIVE — After Dark",
-  description: "Noctive is a world built after dark. Wear, live experiences and special projects.",
+  metadataBase: new URL("https://www.noctivepresents.com"),
+  title: {
+    default: "NOCTIVE — After Dark",
+    template: "%s — NOCTIVE",
+  },
+  description: "NOCTIVE — apparel, events and studio projects. Drop 001: After Dark.",
   openGraph: {
     title: "NOCTIVE — After Dark",
-    description: "Wear. Presents. Studio. The world of Noctive.",
+    description: "Drop 001 / After Dark. Apparel, events and studio projects from Noctive.",
     images: ["/noctive-poster.png"],
   },
 };

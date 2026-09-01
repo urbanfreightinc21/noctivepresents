@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRef, useState } from "react";
+import Waitlist from "./Waitlist";
 
 const INSTAGRAM = "https://www.instagram.com/noctivepresents/";
 
@@ -9,23 +11,24 @@ const divisions = [
   {
     number: "01",
     name: "WEAR",
-    status: "ACTIVE / DROP 001",
-    copy: "Limited apparel, objects and collaborations built inside the Noctive world.",
-    href: "#wear",
+    status: "DROP 001 / ACTIVE",
+    copy: "Limited apparel, releases and collaborations under the Noctive name.",
+    href: "/wear",
+    featured: true,
   },
   {
     number: "02",
-    name: "PRESENTS",
-    status: "EVENTS / EXPERIENCES",
-    copy: "Music, artists and rooms worth remembering. Noctive started here. It stays here.",
-    href: "#presents",
+    name: "EVENTS",
+    status: "LIVE / SELECTIVE",
+    copy: "Noctive in the room — artists, sound, visuals and live experiences.",
+    href: "/events",
   },
   {
     number: "03",
     name: "STUDIO",
     status: "SPECIAL PROJECTS",
-    copy: "Original worlds, visual campaigns, artist capsules and future collaborations.",
-    href: "#studio",
+    copy: "Original concepts, campaigns, collaborations and visual projects.",
+    href: "/studio",
   },
 ];
 
@@ -43,66 +46,50 @@ export default function Home() {
   return (
     <main>
       <header className="nav">
-        <a className="nav-brand" href="#top" aria-label="Noctive home">
+        <Link className="nav-brand" href="/" aria-label="Noctive home">
           <Image src="/noctive-logo.png" alt="" width={34} height={34} priority />
           <span>NOCTIVE</span>
-        </a>
-
+        </Link>
         <nav aria-label="Primary navigation">
-          <a href="#wear">Wear</a>
-          <a href="#presents">Presents</a>
-          <a href="#studio">Studio</a>
-          <a href="#archive">Archive</a>
+          <Link href="/wear">Wear</Link>
+          <Link href="/events">Events</Link>
+          <Link href="/studio">Studio</Link>
+          <Link href="/archive">Archive</Link>
         </nav>
-
         <a className="nav-social" href={INSTAGRAM} target="_blank" rel="noreferrer">
           Instagram ↗
         </a>
       </header>
 
       <section className="hero" id="top">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster="/noctive-poster.png"
-        >
+        <video ref={videoRef} autoPlay muted loop playsInline preload="auto" poster="/noctive-poster.png">
           <source src="/noctive-hero.mp4" type="video/mp4" />
         </video>
         <div className="hero-overlay" />
         <div className="scanline" />
         <div className="noise" />
+        <div className="hero-orbit hero-orbit-a" />
+        <div className="hero-orbit hero-orbit-b" />
 
         <div className="hero-corner hero-corner-left">
           NOCTIVE / 2026<br />
           CULTURE AFTER DARK
         </div>
         <div className="hero-corner hero-corner-right">
-          LOS ANGELES / CA<br />
-          SIGNAL 001
+          DROP 001 / SIGNAL OPEN<br />
+          AFTER DARK
         </div>
 
         <div className="hero-copy">
-          <Image
-            className="hero-logo"
-            src="/noctive-logo.png"
-            alt="Noctive"
-            width={260}
-            height={260}
-            priority
-          />
-          <p className="hero-kicker">NOCTIVE WEAR / COLLECTION 001</p>
+          <Image className="hero-logo" src="/noctive-logo.png" alt="Noctive" width={260} height={260} priority />
+          <p className="hero-kicker">NOCTIVE / DROP 001</p>
           <h1>
             <span>AFTER</span>
             <strong>DARK.</strong>
           </h1>
-          <p className="hero-sub">THE FIRST DROP IS FORMING.</p>
-
+          <p className="hero-sub">FIRST RELEASE / ACCESS LIST OPEN</p>
           <div className="hero-buttons">
-            <a className="btn btn-light" href="#wear">ENTER DROP 001</a>
+            <Link className="btn btn-light" href="/wear#access">GET DROP ACCESS</Link>
             <a className="btn btn-ghost" href="#world">EXPLORE NOCTIVE</a>
           </div>
         </div>
@@ -110,32 +97,23 @@ export default function Home() {
         <button className="sound-toggle" onClick={toggleSound}>
           {soundOn ? "SOUND ON" : "SOUND OFF"}
         </button>
-
-        <a className="scroll" href="#world">
-          <span />
-          Scroll
-        </a>
+        <a className="scroll" href="#world"><span />Scroll</a>
       </section>
 
       <section className="world section" id="world">
         <div className="section-index">00 / THE WORLD</div>
         <div className="world-grid">
           <div>
-            <p className="eyebrow">NOCTIVE IS EXPANDING</p>
-            <h2>
-              NOT JUST
-              <br />
-              A SHOW.
-            </h2>
+            <p className="eyebrow">NOCTIVE / ONE NAME</p>
+            <h2>NOT JUST<br />A SHOW.</h2>
           </div>
           <div className="copy-block">
             <p>
-              Noctive is a world built around what happens after dark — music,
-              design, apparel and the culture around it.
+              Noctive moves across apparel, live experiences and visual culture.
+              Different formats. One identity.
             </p>
             <p>
-              Presents remains the live side. Wear becomes the product. Studio
-              is where the visual language, characters and collaborations grow.
+              Right now the focus is Wear. <strong className="inline-strong">After Dark</strong> is the first release.
             </p>
             <strong>ONE NAME. DIFFERENT FORMS.</strong>
           </div>
@@ -143,10 +121,11 @@ export default function Home() {
       </section>
 
       <section className="divisions section">
-        <div className="section-index">01 / DIVISIONS</div>
-        <div className="division-grid">
+        <div className="section-index">01 / NOCTIVE</div>
+        <div className="division-grid division-grid-weighted">
           {divisions.map((division) => (
-            <a className="division-card" href={division.href} key={division.name}>
+            <Link className={`division-card ${division.featured ? "division-card-featured" : ""}`} href={division.href} key={division.name}>
+              <div className="division-scan" />
               <div className="division-topline">
                 <span>{division.number}</span>
                 <span>{division.status}</span>
@@ -154,160 +133,71 @@ export default function Home() {
               <div className="division-name">{division.name}</div>
               <p>{division.copy}</p>
               <span className="division-enter">ENTER ↘</span>
-            </a>
+            </Link>
           ))}
         </div>
       </section>
 
       <section className="wear section" id="wear">
-        <div className="section-index">02 / WEAR</div>
+        <div className="section-index">02 / DROP 001</div>
         <div className="wear-stage">
           <div className="wear-art">
-            <Image
-              src="/noctive-poster.png"
-              alt="Noctive After Dark collection teaser"
-              fill
-              sizes="(max-width: 900px) 100vw, 54vw"
-            />
+            <Image src="/noctive-poster.png" alt="Noctive After Dark collection teaser" fill sizes="(max-width: 900px) 100vw, 54vw" />
             <div className="wear-art-shade" />
+            <div className="wear-grid-overlay" />
             <div className="wear-watermark">AFTER DARK</div>
             <div className="wear-code">NCTV / W-001 / 26</div>
           </div>
-
           <div className="wear-copy">
-            <p className="eyebrow">DROP 001 / COMING SOON</p>
+            <p className="eyebrow">DROP 001 / ACCESS LIST OPEN</p>
             <h2>AFTER DARK</h2>
             <p className="wear-lead">
-              The first Noctive collection. Built as a real label — not event merch.
+              The first Noctive apparel release. Product and campaign previews will unlock in stages.
             </p>
             <div className="drop-meta">
-              <span>HEAVYWEIGHT TEES</span>
-              <span>HOODIES</span>
-              <span>LIMITED OBJECTS</span>
+              <span>NOCTIVE / WEAR</span>
               <span>COLLECTION 001</span>
+              <span>LIMITED RELEASE</span>
+              <span>DATE / UNANNOUNCED</span>
             </div>
-            <p className="wear-note">
-              Designs, campaign imagery and release details will surface in stages.
-              No fake countdown. No manufactured scarcity. Just the drop when it is ready.
-            </p>
-            <a className="btn btn-light" href={INSTAGRAM} target="_blank" rel="noreferrer">
-              FOLLOW THE DROP ↗
-            </a>
+            <Waitlist compact />
+            <Link className="text-link" href="/wear">OPEN DROP 001 ↗</Link>
           </div>
         </div>
       </section>
 
       <section className="signal section" aria-label="Noctive statement">
         <div className="signal-track">
-          <span>NOCTIVE</span>
-          <i>AFTER DARK</i>
-          <span>NOCTIVE</span>
-          <i>AFTER DARK</i>
-          <span>NOCTIVE</span>
+          <span>NOCTIVE</span><i>AFTER DARK</i><span>DROP 001</span><i>NOCTIVE</i><span>AFTER DARK</span><i>DROP 001</i>
         </div>
       </section>
 
-      <section className="presents section" id="presents">
-        <div className="section-index">03 / PRESENTS</div>
-        <div className="presents-grid">
-          <div className="presents-copy">
-            <p className="eyebrow">LIVE EXPERIENCES</p>
-            <h2>THE NIGHT<br />STARTED HERE.</h2>
-            <p>
-              Noctive Presents remains our live division — selective events, artists
-              and experiences when there is something worth putting into a room.
-            </p>
-            <div className="status-line">
-              <span className="pulse" />
-              NEXT TRANSMISSION / PENDING
-            </div>
+      <section className="system section">
+        <div className="section-index">03 / STATUS</div>
+        <div className="system-grid">
+          <div className="system-lead">
+            <p className="eyebrow">CURRENT SIGNAL</p>
+            <h2>BUILDING<br />IN PUBLIC.</h2>
           </div>
-          <div className="presents-visual">
-            <video autoPlay muted loop playsInline poster="/noctive-poster.png">
-              <source src="/noctive-hero.mp4" type="video/mp4" />
-            </video>
-            <div className="presents-shade" />
-            <span>NOCTIVE / PRESENTS</span>
+          <div className="system-list">
+            <Link href="/wear" className="system-row"><span>01</span><strong>AFTER DARK</strong><em>DROP 001 / FORMING</em><b>WEAR ↗</b></Link>
+            <Link href="/events" className="system-row"><span>02</span><strong>EVENTS</strong><em>NEXT DATE / UNANNOUNCED</em><b>OPEN ↗</b></Link>
+            <Link href="/studio" className="system-row"><span>03</span><strong>STUDIO</strong><em>PROJECTS / DEVELOPING</em><b>OPEN ↗</b></Link>
           </div>
         </div>
       </section>
 
-      <section className="studio section" id="studio">
-        <div className="section-index">04 / STUDIO</div>
-        <div className="studio-shell">
-          <div className="studio-heading">
-            <p className="eyebrow">ORIGINAL WORLDS / COLLABORATIONS</p>
-            <h2>STUDIO</h2>
-          </div>
-          <div className="studio-copy">
-            <p>
-              The creative arm of Noctive. A home for original characters, visual
-              campaigns, artist capsules, licensed collaborations and limited projects.
-            </p>
-            <div className="studio-tags">
-              <span>ORIGINAL IP</span>
-              <span>COLLABS</span>
-              <span>CAMPAIGNS</span>
-              <span>FILM</span>
-              <span>OBJECTS</span>
-            </div>
-            <span className="coming-label">DEVELOPING / 2026+</span>
-          </div>
-        </div>
-      </section>
-
-      <section className="archive section" id="archive">
-        <div className="section-index">05 / ARCHIVE</div>
-        <div className="archive-head">
-          <h2>EVERYTHING<br />LEAVES A TRACE.</h2>
-          <p>
-            Future drops, past events, campaigns and collaborations will live here.
-            The archive becomes the history of the brand as it grows.
-          </p>
-        </div>
-
-        <div className="archive-list">
-          <div className="archive-row archive-row-active">
-            <span>001</span>
-            <strong>AFTER DARK</strong>
-            <em>WEAR / FORMING</em>
-            <b>2026</b>
-          </div>
-          <div className="archive-row">
-            <span>002</span>
-            <strong>NOCTIVE PRESENTS</strong>
-            <em>LIVE / ARCHIVE</em>
-            <b>2026</b>
-          </div>
-          <div className="archive-row archive-row-locked">
-            <span>003</span>
-            <strong>CLASSIFIED</strong>
-            <em>STUDIO / LOCKED</em>
-            <b>—</b>
-          </div>
-        </div>
-      </section>
-
-      <section className="contact section" id="contact">
-        <div className="section-index">06 / CONTACT</div>
+      <section className="contact section">
+        <div className="section-index">04 / CONTACT</div>
         <div className="contact-grid">
           <div>
             <p className="eyebrow">NOCTIVE / INQUIRIES</p>
-            <h2>ENTER THE<br />WORLD.</h2>
+            <h2>STAY<br />CLOSE.</h2>
           </div>
           <div className="contact-links">
-            <a href="mailto:hello@noctivepresents.com">
-              GENERAL
-              <span>hello@noctivepresents.com</span>
-            </a>
-            <a href="mailto:booking@noctivepresents.com">
-              PRESENTS / BOOKING
-              <span>booking@noctivepresents.com</span>
-            </a>
-            <a href={INSTAGRAM} target="_blank" rel="noreferrer">
-              INSTAGRAM
-              <span>@noctivepresents ↗</span>
-            </a>
+            <a href="mailto:hello@noctivepresents.com">GENERAL <span>hello@noctivepresents.com</span></a>
+            <a href="mailto:booking@noctivepresents.com">BOOKING <span>booking@noctivepresents.com</span></a>
+            <a href={INSTAGRAM} target="_blank" rel="noreferrer">INSTAGRAM <span>@noctivepresents ↗</span></a>
           </div>
         </div>
       </section>
@@ -317,8 +207,8 @@ export default function Home() {
           <Image src="/noctive-logo.png" alt="" width={54} height={54} />
           <span>NOCTIVE</span>
         </div>
-        <div className="footer-divisions">WEAR / PRESENTS / STUDIO</div>
-        <p>AFTER DARK / SINCE 2026</p>
+        <div className="footer-divisions">WEAR / EVENTS / STUDIO</div>
+        <div className="footer-legal"><Link href="/privacy">PRIVACY</Link><Link href="/terms">TERMS</Link></div>
       </footer>
     </main>
   );
