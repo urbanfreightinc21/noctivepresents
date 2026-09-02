@@ -6,13 +6,13 @@ import "./v4.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.noctivepresents.com"),
   title: {
-    default: "NOCTIVE — After Dark",
+    default: "NOCTIVE",
     template: "%s — NOCTIVE",
   },
-  description: "NOCTIVE — apparel, events and visual culture. Drop 001: After Dark.",
+  description: "NOCTIVE is an independent California creative project spanning limited apparel and selective live experiences.",
   openGraph: {
-    title: "NOCTIVE — After Dark",
-    description: "Drop 001 / After Dark. Apparel, events and visual culture from Noctive.",
+    title: "NOCTIVE",
+    description: "Limited apparel and selective live experiences from NOCTIVE.",
     images: ["/noctive-poster.png"],
   },
 };
