@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Waitlist from "./Waitlist";
 
 const INSTAGRAM = "https://www.instagram.com/noctivepresents/";
@@ -14,6 +14,49 @@ const divisions = [
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null); const [soundOn,setSoundOn]=useState(false);
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Instagram's iOS browser can ignore the first autoplay request while the
+    // page or video is still loading. Retry at each useful lifecycle point.
+    video.muted = true;
+    video.defaultMuted = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+
+    const tryPlay = () => {
+      if (!video.paused) return;
+      void video.play().catch(() => {
+        // A first touch/pointer event below provides the user gesture iOS may
+        // require. The poster remains visible if playback is still blocked.
+      });
+    };
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "visible") tryPlay();
+    };
+
+    tryPlay();
+    const retryTimers = [250, 750, 1500, 3000].map((delay) =>
+      window.setTimeout(tryPlay, delay),
+    );
+    video.addEventListener("loadedmetadata", tryPlay);
+    video.addEventListener("canplay", tryPlay);
+    window.addEventListener("pageshow", tryPlay);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    document.addEventListener("touchstart", tryPlay, { passive: true, once: true });
+    document.addEventListener("pointerdown", tryPlay, { passive: true, once: true });
+
+    return () => {
+      retryTimers.forEach(window.clearTimeout);
+      video.removeEventListener("loadedmetadata", tryPlay);
+      video.removeEventListener("canplay", tryPlay);
+      window.removeEventListener("pageshow", tryPlay);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      document.removeEventListener("touchstart", tryPlay);
+      document.removeEventListener("pointerdown", tryPlay);
+    };
+  }, []);
   const toggleSound=()=>{if(!videoRef.current)return;videoRef.current.muted=soundOn;setSoundOn(!soundOn);videoRef.current.play().catch(()=>{});};
   return <main>
     <header className="nav"><Link className="nav-brand" href="/" aria-label="Noctive home"><Image src="/noctive-logo.png" alt="" width={34} height={34} priority/><span>NOCTIVE</span></Link><nav aria-label="Primary navigation"><Link href="/wear">Wear</Link><Link href="/events">Events</Link><Link href="/about">About</Link><Link href="/contact">Contact</Link></nav><a className="nav-social" href={INSTAGRAM} target="_blank" rel="noreferrer">Instagram ↗</a></header>
