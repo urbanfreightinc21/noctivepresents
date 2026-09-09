@@ -3,7 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 const INSTAGRAM="https://www.instagram.com/noctivepresents/";
-export const metadata:Metadata={title:"Contact",description:"Contact Noctive for general, apparel, collaboration and booking inquiries."};
+export const metadata:Metadata={
+  title:"Contact",
+  description:"Contact NOCTIVE for apparel, collaboration, press, partnership and live event inquiries.",
+  alternates:{canonical:"/contact"},
+};
 
 export default function ContactPage(){return <main className="about-page">
 <header className="nav subnav"><Link className="nav-brand" href="/" aria-label="Noctive home"><Image src="/noctive-logo.png" alt="" width={34} height={34} priority/><span>NOCTIVE</span></Link><nav aria-label="Primary navigation"><Link href="/wear">Wear</Link><Link href="/events">Events</Link><Link href="/about">About</Link><Link href="/contact">Contact</Link></nav><Link className="nav-social" href="/">Close ↙</Link></header>
