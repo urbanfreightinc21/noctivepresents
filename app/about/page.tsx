@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-export const metadata: Metadata = { title: "About", description: "Noctive is an independent California creative project spanning limited apparel and selective live experiences." };
+export const metadata: Metadata = {
+  title: "About",
+  description: "Learn what NOCTIVE is: an independent California brand creating limited apparel and selective live music experiences.",
+  alternates: { canonical: "/about" },
+};
 
 export default function AboutPage() {
   return <main className="about-page">
