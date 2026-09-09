@@ -16,6 +16,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: [
+      {
+        url: "/noctive-logo.png",
+        type: "image/png",
+        sizes: "1024x1024",
+      },
+    ],
+    shortcut: "/noctive-logo.png",
+    apple: "/noctive-logo.png",
+  },
   openGraph: {
     type: "website",
     siteName: "NOCTIVE",
