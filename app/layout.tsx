@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s — NOCTIVE",
   },
   description:
-    "NOCTIVE is an independent California brand creating limited apparel and selective live music experiences.",
+    "NOCTIVE is an independent creative project based in California, spanning limited apparel and selective live experiences.",
   alternates: {
     canonical: "/",
   },
@@ -32,14 +32,14 @@ export const metadata: Metadata = {
     siteName: "NOCTIVE",
     title: "NOCTIVE — Apparel, Events & Live Experiences",
     description:
-      "Independent California brand creating limited apparel and selective live music experiences.",
+      "Independent creative project based in California, spanning limited apparel and selective live experiences.",
     images: ["/noctive-poster.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "NOCTIVE — Apparel, Events & Live Experiences",
     description:
-      "Independent California brand creating limited apparel and selective live music experiences.",
+      "Independent creative project based in California, spanning limited apparel and selective live experiences.",
     images: ["/noctive-poster.png"],
   },
 };
@@ -51,11 +51,11 @@ const structuredData = {
       "@type": "Organization",
       "@id": `${siteUrl}/#organization`,
       name: "NOCTIVE",
-      alternateName: "Noctive Presents",
+      alternateName: ["Noctive Presents", "NOCTIVE Presents"],
       url: `${siteUrl}/`,
       logo: `${siteUrl}/noctive-logo.png`,
       description:
-        "NOCTIVE is an independent California brand creating limited apparel and selective live music experiences.",
+        "NOCTIVE is an independent creative project based in California, spanning limited apparel and selective live experiences.",
       sameAs: ["https://www.instagram.com/noctivepresents/"],
     },
     {
@@ -63,7 +63,7 @@ const structuredData = {
       "@id": `${siteUrl}/#website`,
       url: `${siteUrl}/`,
       name: "NOCTIVE",
-      alternateName: "Noctive Presents",
+      alternateName: ["Noctive Presents", "NOCTIVE Presents"],
       publisher: {
         "@id": `${siteUrl}/#organization`,
       },
