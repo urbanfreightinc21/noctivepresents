@@ -14,14 +14,35 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ section: string }> }): Promise<Metadata> {
   const { section } = await params;
-  const titles: Record<string, string> = {
-    wear: "Wear / Drop 001: After Dark",
-    events: "Events",
-    archive: "Archive",
-    privacy: "Privacy Policy",
-    terms: "Terms",
+  const metadataBySection: Record<string, { title: string; description: string }> = {
+    wear: {
+      title: "Wear / Drop 001: After Dark",
+      description: "Explore NOCTIVE Wear and Drop 001: After Dark, the first limited apparel release from NOCTIVE.",
+    },
+    events: {
+      title: "Events",
+      description: "NOCTIVE Events creates selective live music experiences around artists, sound, production and nightlife.",
+    },
+    archive: {
+      title: "Archive",
+      description: "Explore the NOCTIVE archive of apparel releases and live events.",
+    },
+    privacy: {
+      title: "Privacy Policy",
+      description: "Read the NOCTIVE privacy policy.",
+    },
+    terms: {
+      title: "Terms",
+      description: "Read the NOCTIVE website terms.",
+    },
   };
-  return { title: titles[section] ?? "NOCTIVE" };
+  const selected = metadataBySection[section];
+  if (!selected) return { title: "NOCTIVE" };
+  return {
+    title: selected.title,
+    description: selected.description,
+    alternates: { canonical: `/${section}` },
+  };
 }
 
 function SiteHeader() {
