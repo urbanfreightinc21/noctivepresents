@@ -562,3 +562,89 @@ footer { padding: 28px 5vw 38px; display: grid; grid-template-columns: 1fr auto 
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+
+/* LIVE EVENT / AFTER DARK 001 */
+.event-live-hero {
+  background:
+    radial-gradient(circle at 68% 44%, rgba(4,88,169,.16), transparent 25%),
+    radial-gradient(circle at 32% 58%, rgba(255,255,255,.035), transparent 26%),
+    #030303;
+}
+.event-meta-list {
+  margin: 32px 0 4px;
+  border-top: 1px solid var(--line);
+}
+.event-meta-list span {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 18px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+  color: #c8c8c3;
+  font-size: .72rem;
+  letter-spacing: .08em;
+}
+.event-meta-list b {
+  color: #6f6f6b;
+  font-size: .5rem;
+  letter-spacing: .18em;
+}
+.event-checkout {
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 80% 18%, rgba(4,88,169,.08), transparent 24%),
+    #020202;
+}
+.event-checkout-grid {
+  display: grid;
+  grid-template-columns: .72fr 1.28fr;
+  gap: 6vw;
+  align-items: start;
+}
+.event-checkout-copy {
+  position: sticky;
+  top: 105px;
+  padding-top: 18px;
+}
+.event-checkout-copy h2 {
+  margin: 14px 0 28px;
+  font-size: clamp(3.4rem,6.6vw,7.4rem);
+  line-height: .84;
+  letter-spacing: -.065em;
+  font-weight: 900;
+}
+.event-checkout-copy h2 span {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,.82);
+}
+.event-checkout-copy > p {
+  max-width: 460px;
+  margin: 0 0 10px;
+  color: #a8a8a3;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.event-checkout-frame {
+  min-width: 0;
+  border: 1px solid var(--line);
+  background: #050505;
+  overflow: hidden;
+}
+.event-checkout-frame iframe {
+  display: block;
+  min-height: 700px;
+  background: #050505;
+}
+
+@media (max-width: 900px) {
+  .event-checkout-grid { grid-template-columns: 1fr; gap: 42px; }
+  .event-checkout-copy { position: static; padding-top: 0; }
+  .event-checkout-frame iframe { min-height: 760px; }
+}
+
+@media (max-width: 520px) {
+  .event-meta-list span { grid-template-columns: 82px 1fr; gap: 10px; }
+  .event-checkout { padding-left: 12px; padding-right: 12px; }
+  .event-checkout-frame { margin: 0 -2px; }
+}
