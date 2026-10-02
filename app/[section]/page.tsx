@@ -183,8 +183,22 @@ function EventsPage() {
         </div>
       </section>
 
+      <section className="section event-wear-teaser">
+        <div className="section-index">03 / WEAR</div>
+        <div className="event-wear-teaser-grid">
+          <div>
+            <p className="eyebrow">AFTER DARK / DROP 001 / WEAR</p>
+            <h2>DROP 001<br /><span>COMING NEXT.</span></h2>
+          </div>
+          <div>
+            <p>Limited Noctive apparel is planned ahead of the show. Release details will be announced separately from the event.</p>
+            <Link className="text-link" href="/wear">GET DROP ACCESS ↗</Link>
+          </div>
+        </div>
+      </section>
+
       <section className="section event-system">
-        <div className="section-index">03 / NOCTIVE</div>
+        <div className="section-index">04 / NOCTIVE</div>
         <div className="event-format-grid">
           <div><span>01</span><strong>IKU</strong><p>Fresno debut. Headline set at Fulton 55.</p></div>
           <div><span>02</span><strong>SUPPORT</strong><p>Jole / MVSTY / Dayfish / Skatemesa.</p></div>
