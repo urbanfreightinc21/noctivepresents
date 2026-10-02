@@ -648,3 +648,97 @@ footer { padding: 28px 5vw 38px; display: grid; grid-template-columns: 1fr auto 
   .event-checkout { padding-left: 12px; padding-right: 12px; }
   .event-checkout-frame { margin: 0 -2px; }
 }
+
+
+/* HOMEPAGE APPAREL TEASER */
+.wear-teaser {
+  border-bottom: 1px solid var(--line);
+  padding-top: 88px;
+  padding-bottom: 88px;
+}
+.wear-teaser-card {
+  display: grid;
+  grid-template-columns: .72fr 1.28fr;
+  min-height: 440px;
+  border: 1px solid var(--line);
+}
+.wear-teaser-art {
+  position: relative;
+  overflow: hidden;
+  min-height: 440px;
+  border-right: 1px solid var(--line);
+}
+.wear-teaser-art img {
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.16) brightness(.58);
+}
+.wear-teaser-copy {
+  padding: clamp(34px, 5vw, 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.wear-teaser-copy h2,
+.event-wear-teaser h2 {
+  margin: 12px 0 24px;
+  font-size: clamp(3rem, 6vw, 6.4rem);
+  line-height: .84;
+  letter-spacing: -.065em;
+  font-weight: 900;
+}
+.wear-teaser-copy h2 span,
+.event-wear-teaser h2 span {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,.82);
+}
+.wear-teaser-copy > p {
+  max-width: 620px;
+  margin: 0 0 26px;
+  color: #b8b8b3;
+  font-size: clamp(1rem,1.35vw,1.18rem);
+  line-height: 1.55;
+}
+.wear-teaser-copy .waitlist {
+  max-width: 600px;
+}
+
+/* EVENT PAGE APPAREL TEASER */
+.event-wear-teaser {
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,255,255,.012), transparent);
+}
+.event-wear-teaser-grid {
+  display: grid;
+  grid-template-columns: 1fr .8fr;
+  gap: 8vw;
+  align-items: end;
+}
+.event-wear-teaser-grid > div:last-child p {
+  margin: 0;
+  color: #aaa9a4;
+  font-size: clamp(1rem,1.4vw,1.2rem);
+  line-height: 1.6;
+  max-width: 560px;
+}
+
+@media (max-width: 900px) {
+  .wear-teaser-card,
+  .event-wear-teaser-grid {
+    grid-template-columns: 1fr;
+  }
+  .wear-teaser-art {
+    min-height: 360px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 520px) {
+  .wear-teaser {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+  .wear-teaser-art {
+    min-height: 300px;
+  }
+}
