@@ -137,8 +137,8 @@ function EventsPage() {
       <section className="subhero subhero-clean event-live-hero">
         <div className="noise" /><div className="event-orbit event-orbit-one" /><div className="event-orbit event-orbit-two" />
         <div className="subhero-copy">
-          <p className="eyebrow">NOCTIVE / AFTER DARK 001</p>
-          <h1>IKU:<br /><span>AFTER DARK.</span></h1>
+          <p className="eyebrow">NOCTIVE PRESENTS</p>
+          <h1>IKU:<br /><span>AFTER DARK 001.</span></h1>
           <div className="subhero-bottom"><span>NOVEMBER 21, 2026</span><span>FULTON 55 / FRESNO, CA</span><span>9PM–2AM / 21+</span></div>
         </div>
       </section>
@@ -146,7 +146,7 @@ function EventsPage() {
       <section className="section events-status">
         <div className="section-index">01 / EVENT 001</div>
         <div className="events-status-grid">
-          <div><span className="status-dot" /><p className="eyebrow">TICKETS / ON SALE</p><h2>IKU:<br />AFTER DARK 001.</h2></div>
+          <div><span className="status-dot" /><p className="eyebrow">TICKETS / ON SALE</p><h2>IKU:<br />FRESNO.</h2></div>
           <div className="events-note">
             <p>IKU makes his Fresno debut at Fulton 55 with Noctive. A night of trap, bass and high-energy electronic music with support from Jole, MVSTY, Dayfish and Skatemesa.</p>
             <div className="event-meta-list">
@@ -165,9 +165,9 @@ function EventsPage() {
         <div className="section-index">02 / TICKETS</div>
         <div className="event-checkout-grid">
           <div className="event-checkout-copy">
-            <p className="eyebrow">NOCTIVE / TICKETING</p>
-            <h2>YOUR ENTRY<br /><span>AFTER DARK.</span></h2>
-            <p>Secure your ticket below. Presale and release pricing is available while quantities last.</p>
+            <p className="eyebrow">NOCTIVE / TICKETS</p>
+            <h2>BUY<br /><span>TICKETS.</span></h2>
+            <p>Presale and release pricing is available while quantities last.</p>
             <a className="text-link" href="https://posh.vip/e/iku-after-dark-001-fresno" target="_blank" rel="noreferrer">OPEN POSH DIRECTLY ↗</a>
           </div>
           <div className="event-checkout-frame">
@@ -186,7 +186,7 @@ function EventsPage() {
       <section className="section event-system">
         <div className="section-index">03 / NOCTIVE</div>
         <div className="event-format-grid">
-          <div><span>01</span><strong>IKU</strong><p>Fresno debut. Headline set at After Dark 001.</p></div>
+          <div><span>01</span><strong>IKU</strong><p>Fresno debut. Headline set at Fulton 55.</p></div>
           <div><span>02</span><strong>SUPPORT</strong><p>Jole / MVSTY / Dayfish / Skatemesa.</p></div>
           <div><span>03</span><strong>FULTON 55</strong><p>875 Divisadero St, Fresno, California.</p></div>
         </div>
