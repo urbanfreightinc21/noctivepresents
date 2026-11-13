@@ -159,8 +159,7 @@ function EventsPage() {
               <p>Fulton 55 / Fresno, CA / 9PM–2AM</p>
               <p>Support: Jole, MVSTY, Dayfish &amp; Skatemesa.</p>
               <div className="noctive-event-card-actions">
-                <Link className="btn btn-light" href="/events/iku-after-dark-001">EVENT DETAILS ↗</Link>
-                <Link className="btn btn-ghost" href="/events/iku-after-dark-001#tickets">TICKETS ↗</Link>
+                <Link className="btn btn-light" href="/events/iku-after-dark-001#tickets">BUY TICKETS</Link>
               </div>
             </div>
           </article>
@@ -177,8 +176,7 @@ function EventsPage() {
               <p>Los Arcos / Fresno, CA / 8PM–2AM</p>
               <p>Noctive × Night Pulze / Jole, Rocky, Vega &amp; Rawny.</p>
               <div className="noctive-event-card-actions">
-                <Link className="btn btn-light" href="/events/junkie-kid-after-dark-002">EVENT DETAILS ↗</Link>
-                <Link className="btn btn-ghost" href="/events/junkie-kid-after-dark-002#tickets">TICKETS ↗</Link>
+                <Link className="btn btn-light" href="/events/junkie-kid-after-dark-002#tickets">BUY TICKETS</Link>
               </div>
             </div>
           </article>
