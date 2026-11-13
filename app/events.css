@@ -16,3 +16,12 @@
 .noctive-junkie-hero { background:radial-gradient(circle at 60% 45%,rgba(210,18,36,.28),transparent 42%),#030102; }
 .noctive-junkie-detail .events-status .status-dot {background:#ea2535; box-shadow:0 0 18px #ea2535;}
 @media(max-width:800px){.noctive-event-cards{grid-template-columns:1fr}.noctive-event-card-art{min-height:280px}.noctive-events-list{padding-top:65px}}
+
+/* Display the original supplied flyer without cropping or filters. Its parent retains a clean fallback until the upload arrives. */
+.noctive-event-card-art { isolation:isolate; }
+.noctive-event-flyer { position:absolute; z-index:3; inset:0; width:100%; height:100%; object-fit:contain; opacity:0; pointer-events:none; background:#030303; transition:opacity .25s ease; }
+.noctive-event-flyer-loaded { opacity:1; }
+.noctive-event-card-art:has(.noctive-event-flyer-loaded) { min-height:0; aspect-ratio: 4 / 5; }
+.noctive-event-card-art:has(.noctive-event-flyer-loaded) .noctive-event-art-index,
+.noctive-event-card-art:has(.noctive-event-flyer-loaded) .noctive-event-art-date,
+.noctive-event-card-art:has(.noctive-event-flyer-loaded) > strong { visibility:hidden; }

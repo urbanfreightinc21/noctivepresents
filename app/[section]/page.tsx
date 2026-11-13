@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Waitlist from "../Waitlist";
+import EventArtwork from "../EventArtwork";
 
 const INSTAGRAM = "https://www.instagram.com/noctivepresents/";
 const validSections = ["wear", "events", "archive", "privacy", "terms"] as const;
@@ -147,6 +148,7 @@ function EventsPage() {
         <div className="noctive-event-cards">
           <article className="noctive-event-card noctive-event-card-iku">
             <div className="noctive-event-card-art">
+              <EventArtwork src="/events/iku-after-dark-001.jpg" alt="Official IKU: After Dark 001 event flyer" />
               <span className="noctive-event-art-index">AFTER DARK / 001</span>
               <strong>IKU</strong>
               <span className="noctive-event-art-date">NOV 21 / FRESNO</span>
@@ -164,6 +166,7 @@ function EventsPage() {
           </article>
           <article className="noctive-event-card noctive-event-card-junkie">
             <div className="noctive-event-card-art">
+              <EventArtwork src="/events/junkie-kid-after-dark-002.jpg" alt="Official Junkie Kid: After Dark 002 event flyer" />
               <span className="noctive-event-art-index">AFTER DARK / 002</span>
               <strong>JUNKIE<br />KID</strong>
               <span className="noctive-event-art-date">JAN 16 / FRESNO</span>
