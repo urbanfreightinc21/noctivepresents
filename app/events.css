@@ -1,0 +1,18 @@
+/* Event index and After Dark 002 detail — no homepage visual changes */
+.noctive-events-hero { min-height: 58svh; background: radial-gradient(circle at 76% 42%,rgba(255,255,255,.06),transparent 35%),#020202; }
+.noctive-events-list { padding-top: 88px; }
+.noctive-event-cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; }
+.noctive-event-card { min-width:0; border:1px solid rgba(255,255,255,.16); background:#080808; overflow:hidden; }
+.noctive-event-card-art { position:relative; min-height:350px; padding:28px; display:flex; flex-direction:column; justify-content:space-between; background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.09),transparent 55%),linear-gradient(135deg,#101010,#020202); overflow:hidden; }
+.noctive-event-card-art::before {content:""; position:absolute; width:70%; aspect-ratio:1; top:2%; right:-14%; border:1px solid rgba(255,255,255,.17); border-radius:50%; pointer-events:none;}
+.noctive-event-card-junkie .noctive-event-card-art { background:radial-gradient(circle at 50% 50%,rgba(197,14,31,.32),transparent 56%),linear-gradient(135deg,#190407,#030101 75%); }
+.noctive-event-card-junkie .noctive-event-card-art::before {border-color:rgba(255,45,62,.28)}
+.noctive-event-art-index,.noctive-event-art-date {position:relative; z-index:1; font-size:.6rem; letter-spacing:.25em; color:#c7c7c7;}
+.noctive-event-card-art strong {position:relative; z-index:1; font-size:clamp(4.5rem,9vw,9rem); line-height:.8; letter-spacing:-.075em; font-weight:900;}
+.noctive-event-card-content {padding:32px;}
+.noctive-event-card-content h2 {margin:14px 0 18px; font-size:clamp(1.6rem,2.45vw,2.6rem); line-height:1; letter-spacing:-.045em;}
+.noctive-event-card-content>p:not(.eyebrow) {margin:0 0 11px; color:#b1b1ae; font-size:.9rem; line-height:1.5;}
+.noctive-event-card-actions {display:flex; flex-wrap:wrap; gap:10px; margin-top:28px;}
+.noctive-junkie-hero { background:radial-gradient(circle at 60% 45%,rgba(210,18,36,.28),transparent 42%),#030102; }
+.noctive-junkie-detail .events-status .status-dot {background:#ea2535; box-shadow:0 0 18px #ea2535;}
+@media(max-width:800px){.noctive-event-cards{grid-template-columns:1fr}.noctive-event-card-art{min-height:280px}.noctive-events-list{padding-top:65px}}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./polish.css";
 import "./v4.css";
+import "./events.css";
 
 const siteUrl = "https://www.noctivepresents.com";
 

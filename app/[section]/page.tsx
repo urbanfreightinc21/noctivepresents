@@ -20,8 +20,8 @@ export async function generateMetadata({ params }: { params: Promise<{ section: 
       description: "Explore NOCTIVE Wear and Drop 001: After Dark, the first limited apparel release from NOCTIVE.",
     },
     events: {
-      title: "IKU: After Dark 001 — Fresno",
-      description: "Noctive presents IKU: After Dark 001 at Fulton 55 in Fresno, California on November 21, 2026. 21+.",
+      title: "Upcoming Events — After Dark 001 & 002",
+      description: "Upcoming Noctive events in Fresno: IKU on November 21, 2026 and Junkie Kid on January 16, 2027.",
     },
     archive: {
       title: "Archive",
@@ -134,75 +134,51 @@ function EventsPage() {
   return (
     <main className="subpage">
       <SiteHeader />
-      <section className="subhero subhero-clean event-live-hero">
-        <div className="noise" /><div className="event-orbit event-orbit-one" /><div className="event-orbit event-orbit-two" />
+      <section className="subhero subhero-clean noctive-events-hero">
+        <div className="noise" />
         <div className="subhero-copy">
-          <p className="eyebrow">NOCTIVE PRESENTS</p>
-          <h1>IKU:<br /><span>AFTER DARK 001.</span></h1>
-          <div className="subhero-bottom"><span>NOVEMBER 21, 2026</span><span>FULTON 55 / FRESNO, CA</span><span>9PM–2AM / 21+</span></div>
+          <p className="eyebrow">NOCTIVE / LIVE EXPERIENCES</p>
+          <h1>UPCOMING<br /><span>EVENTS.</span></h1>
+          <div className="subhero-bottom"><span>AFTER DARK / 001 &amp; 002</span><span>FRESNO, CALIFORNIA</span><span>TICKETS / ON SALE</span></div>
         </div>
       </section>
-
-      <section className="section events-status">
-        <div className="section-index">01 / EVENT 001</div>
-        <div className="events-status-grid">
-          <div><span className="status-dot" /><p className="eyebrow">TICKETS / ON SALE</p><h2>IKU:<br />FRESNO.</h2></div>
-          <div className="events-note">
-            <p>IKU makes his Fresno debut at Fulton 55 with Noctive. A night of trap, bass and high-energy electronic music with support from Jole, MVSTY, Dayfish and Skatemesa.</p>
-            <div className="event-meta-list">
-              <span><b>DATE</b>NOV 21, 2026</span>
-              <span><b>VENUE</b>FULTON 55</span>
-              <span><b>LOCATION</b>FRESNO, CA</span>
-              <span><b>TIME</b>9PM–2AM</span>
-              <span><b>AGE</b>21+</span>
+      <section className="section noctive-events-list" aria-label="Upcoming events">
+        <div className="section-index">01 / UPCOMING EVENTS</div>
+        <div className="noctive-event-cards">
+          <article className="noctive-event-card noctive-event-card-iku">
+            <div className="noctive-event-card-art">
+              <span className="noctive-event-art-index">AFTER DARK / 001</span>
+              <strong>IKU</strong>
+              <span className="noctive-event-art-date">NOV 21 / FRESNO</span>
             </div>
-            <a className="text-link" href="#tickets">BUY TICKETS ↓</a>
-          </div>
-        </div>
-      </section>
-
-      <section className="section event-checkout" id="tickets">
-        <div className="section-index">02 / TICKETS</div>
-        <div className="event-checkout-grid">
-          <div className="event-checkout-copy">
-            <p className="eyebrow">NOCTIVE / TICKETS</p>
-            <h2>BUY<br /><span>TICKETS.</span></h2>
-            <p>Presale and release pricing is available while quantities last.</p>
-            <a className="text-link" href="https://posh.vip/e/iku-after-dark-001-fresno" target="_blank" rel="noreferrer">OPEN POSH DIRECTLY ↗</a>
-          </div>
-          <div className="event-checkout-frame">
-            <iframe
-              src="https://posh.vip/embed/checkout/iku-after-dark-001-fresno"
-              height="700"
-              width="100%"
-              style={{ border: "none" }}
-              title="IKU: After Dark 001 — Fresno ticket checkout"
-              loading="lazy"
-            />
-          </div>
-        </div>
-      </section>
-
-      <section className="section event-wear-teaser">
-        <div className="section-index">03 / WEAR</div>
-        <div className="event-wear-teaser-grid">
-          <div>
-            <p className="eyebrow">AFTER DARK / DROP 001 / WEAR</p>
-            <h2>DROP 001<br /><span>COMING NEXT.</span></h2>
-          </div>
-          <div>
-            <p>Limited Noctive apparel is planned ahead of the show. Release details will be announced separately from the event.</p>
-            <Link className="text-link" href="/wear">GET DROP ACCESS ↗</Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="section event-system">
-        <div className="section-index">04 / NOCTIVE</div>
-        <div className="event-format-grid">
-          <div><span>01</span><strong>IKU</strong><p>Fresno debut. Headline set at Fulton 55.</p></div>
-          <div><span>02</span><strong>SUPPORT</strong><p>Jole / MVSTY / Dayfish / Skatemesa.</p></div>
-          <div><span>03</span><strong>FULTON 55</strong><p>875 Divisadero St, Fresno, California.</p></div>
+            <div className="noctive-event-card-content">
+              <p className="eyebrow">NOVEMBER 21, 2026 / 21+</p>
+              <h2>IKU: AFTER DARK 001</h2>
+              <p>Fulton 55 / Fresno, CA / 9PM–2AM</p>
+              <p>Support: Jole, MVSTY, Dayfish &amp; Skatemesa.</p>
+              <div className="noctive-event-card-actions">
+                <Link className="btn btn-light" href="/events/iku-after-dark-001">EVENT DETAILS ↗</Link>
+                <Link className="btn btn-ghost" href="/events/iku-after-dark-001#tickets">TICKETS ↗</Link>
+              </div>
+            </div>
+          </article>
+          <article className="noctive-event-card noctive-event-card-junkie">
+            <div className="noctive-event-card-art">
+              <span className="noctive-event-art-index">AFTER DARK / 002</span>
+              <strong>JUNKIE<br />KID</strong>
+              <span className="noctive-event-art-date">JAN 16 / FRESNO</span>
+            </div>
+            <div className="noctive-event-card-content">
+              <p className="eyebrow">JANUARY 16, 2027 / 18+</p>
+              <h2>JUNKIE KID: AFTER DARK 002</h2>
+              <p>Los Arcos / Fresno, CA / 8PM–2AM</p>
+              <p>Noctive × Night Pulze / Jole, Rocky, Vega &amp; Rawny.</p>
+              <div className="noctive-event-card-actions">
+                <Link className="btn btn-light" href="/events/junkie-kid-after-dark-002">EVENT DETAILS ↗</Link>
+                <Link className="btn btn-ghost" href="/events/junkie-kid-after-dark-002#tickets">TICKETS ↗</Link>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
       <SiteFooter />
