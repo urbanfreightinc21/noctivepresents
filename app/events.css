@@ -25,3 +25,28 @@
 .noctive-event-card-art:has(.noctive-event-flyer-loaded) .noctive-event-art-index,
 .noctive-event-card-art:has(.noctive-event-flyer-loaded) .noctive-event-art-date,
 .noctive-event-card-art:has(.noctive-event-flyer-loaded) > strong { visibility:hidden; }
+
+/* AFTER DARK 001 / IKU blue accents — homepage and event directory only */
+.noctive-event-card-iku .noctive-event-card-art {
+  background:
+    radial-gradient(circle at 48% 48%, rgba(32, 117, 224, .30), transparent 58%),
+    linear-gradient(135deg, #071b33 0%, #020711 78%);
+}
+.noctive-event-card-iku .noctive-event-card-art::before {
+  border-color: rgba(70, 155, 255, .27);
+}
+.noctive-event-card-iku .noctive-event-art-index,
+.noctive-event-card-iku .noctive-event-art-date {
+  color: #9ccfff;
+}
+.noctive-event-card-iku .noctive-event-card-art > strong {
+  color: #eef7ff;
+  text-shadow: 0 0 36px rgba(44, 142, 255, .32);
+}
+.hero .hero-copy h1 > span {
+  color: #73baff;
+  text-shadow: 0 0 42px rgba(28, 127, 255, .22);
+}
+.hero .hero-copy h1 > strong {
+  -webkit-text-stroke-color: rgba(142, 202, 255, .88);
+}
