@@ -47,6 +47,10 @@
 /* Mobile: expose main navigation immediately instead of hiding it below the hero. */
 @media (max-width: 900px) {
   .nav, .subnav {
+    /* Remain at the top of the document rather than following mobile scrolling. */
+    position: absolute;
+    top: 0;
+    left: 0;
     grid-template-columns: auto minmax(0, 1fr);
     gap: 16px;
     align-items: center;
