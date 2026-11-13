@@ -148,7 +148,7 @@ function EventsPage() {
         <div className="noctive-event-cards">
           <article className="noctive-event-card noctive-event-card-iku">
             <div className="noctive-event-card-art">
-              <EventArtwork src="/events/IKU%20FINAL%20DRAFT%20%235%20(1).jpg" alt="Official IKU: After Dark 001 event flyer" />
+              <EventArtwork src="/events/iku-after-dark-001.jpg" alt="Official IKU: After Dark 001 event flyer" />
               <span className="noctive-event-art-index">AFTER DARK / 001</span>
               <strong>IKU</strong>
               <span className="noctive-event-art-date">NOV 21 / FRESNO</span>
