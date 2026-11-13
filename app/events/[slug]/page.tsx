@@ -134,8 +134,8 @@ function JunkieKidEventPage() {
         <div className="events-status-grid">
           <div><span className="status-dot" /><p className="eyebrow">TICKETS / ON SALE</p><h2>JUNKIE<br />KID.</h2></div>
           <div className="events-note">
-            <p>Noctive and Night Pulze present After Dark 002, bringing Junkie Kid to Los Arcos in Fresno for a night of hard-hitting electronic music.</p>
-            <p>Featuring support from Jole, Rocky, Vega and Rawny.</p>
+            <p>NOCTIVE × NIGHT PULZE present JUNKIE KID: After Dark 002 at Los Arcos in Fresno on January 16, 2027.</p>
+            <p>With support from JOLE, ROCKY, VEGA &amp; RAWNY.</p>
             <div className="event-meta-list">
               <span><b>DATE</b>JAN 16, 2027</span>
               <span><b>VENUE</b>LOS ARCOS</span>
