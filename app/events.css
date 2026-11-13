@@ -43,10 +43,3 @@
   color: #eef7ff;
   text-shadow: 0 0 36px rgba(44, 142, 255, .32);
 }
-.hero .hero-copy h1 > span {
-  color: #73baff;
-  text-shadow: 0 0 42px rgba(28, 127, 255, .22);
-}
-.hero .hero-copy h1 > strong {
-  -webkit-text-stroke-color: rgba(142, 202, 255, .88);
-}
