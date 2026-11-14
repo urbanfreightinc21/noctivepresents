@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const SIZES = ["S", "M", "L", "XL"] as const;
 type Color = "black" | "espresso";
@@ -18,8 +18,18 @@ export default function EclipseProductView({color,preorderOpen,price,estimatedSh
   const [selected,setSelected]=useState(0);
   const [submitting,setSubmitting]=useState(false);
   const [error,setError]=useState("");
+  const [stock,setStock]=useState<{black:number;espresso:number}|null>(null);
+  useEffect(()=>{
+    if(!preorderOpen)return;
+    let active=true;
+    fetch("/api/eclipse-stock",{cache:"no-store"})
+      .then(async r=>{if(!r.ok)throw new Error("Stock unavailable");return r.json();})
+      .then(data=>{if(active&&data.available&&data.remaining)setStock(data.remaining);})
+      .catch(()=>{if(active)setStock(null);});
+    return ()=>{active=false;};
+  },[preorderOpen]);
   async function checkout() {
-    if (!preorderOpen || submitting) return;
+    if (!preorderOpen || submitting || !stock || stock[color] <= 0) return;
     setSubmitting(true);setError("");
     try {
       const res=await fetch("/api/eclipse-checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({color,size})});
@@ -46,7 +56,11 @@ export default function EclipseProductView({color,preorderOpen,price,estimatedSh
           <div className="ec-product-price">{price===null?"PRICE TO BE ANNOUNCED":new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(price/100)}</div>
           <div className="ec-options"><strong>COLOR</strong><div className="ec-color-choices"><Link href="/wear/eclipse/black" aria-current={color==="black"?"page":undefined} className={color==="black"?"is-selected":""}><span className="ec-swatch ec-swatch-black"/>BLACK</Link><Link href="/wear/eclipse/espresso" aria-current={color==="espresso"?"page":undefined} className={color==="espresso"?"is-selected":""}><span className="ec-swatch ec-swatch-espresso"/>ESPRESSO</Link></div></div>
           <div className="ec-options"><strong>SIZE</strong><div className="ec-sizes">{SIZES.map(v=><button key={v} type="button" className={v===size?"is-selected":""} onClick={()=>setSize(v)} aria-pressed={v===size}>{v}</button>)}</div><p className="ec-size-note">Sizes S–XL. Please check the size chart before placing a pre-order.</p></div>
-          <button type="button" className="ec-preorder-btn" onClick={checkout} disabled={!preorderOpen||submitting}>{preorderOpen?(submitting?"OPENING SECURE CHECKOUT...":"PRE-ORDER"):"PRE-ORDERS OPENING SOON"}</button>
+          {preorderOpen&&stock&&<p className="ec-size-note" aria-live="polite">{stock[color] > 0 ? `${stock[color]} AVAILABLE IN ${product.label.toUpperCase()}` : "SOLD OUT"}</p>}
+          <button type="button" className="ec-preorder-btn" onClick={checkout}
+            disabled={!preorderOpen||submitting||!stock||stock[color] <= 0}>
+            {!preorderOpen?"PRE-ORDERS OPENING SOON":!stock?"CHECKING AVAILABILITY":stock[color]<=0?"SOLD OUT":submitting?"OPENING SECURE CHECKOUT...":"PRE-ORDER"}
+          </button>
           {error&&<p role="alert" className="ec-checkout-error">{error}</p>}
           {preorderOpen&&<p className="ec-order-note">This is a pre-order. Estimated shipping: {estimatedShip}. Shipping charges appear in secure checkout before payment.</p>}
           <div className="ec-specs"><h2>PRODUCT DETAILS</h2><p>Oversized, full-zip silhouette with a satin-lined hood, custom NOCTIVE zipper pull, printed white contour detailing, kangaroo pockets, and Eclipse artwork on the back.</p><p>Product images are digital reconstructions. Final color and garment details may vary slightly from the manufactured item.</p></div>
