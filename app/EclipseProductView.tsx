@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-const SIZES = ["S", "M", "L", "XL", "2XL"] as const;
+const SIZES = ["S", "M", "L", "XL"] as const;
 type Color = "black" | "espresso";
 
 const products: Record<Color,{label:string; images:string[]}> = {
@@ -45,7 +45,7 @@ export default function EclipseProductView({color,preorderOpen,price,estimatedSh
           <p className="ec-product-sub">{product.label.toUpperCase()} / LIMITED FIRST RELEASE</p>
           <div className="ec-product-price">{price===null?"PRICE TO BE ANNOUNCED":new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(price/100)}</div>
           <div className="ec-options"><strong>COLOR</strong><div className="ec-color-choices"><Link href="/wear/eclipse/black" aria-current={color==="black"?"page":undefined} className={color==="black"?"is-selected":""}><span className="ec-swatch ec-swatch-black"/>BLACK</Link><Link href="/wear/eclipse/espresso" aria-current={color==="espresso"?"page":undefined} className={color==="espresso"?"is-selected":""}><span className="ec-swatch ec-swatch-espresso"/>ESPRESSO</Link></div></div>
-          <div className="ec-options"><strong>SIZE</strong><div className="ec-sizes">{SIZES.map(v=><button key={v} type="button" className={v===size?"is-selected":""} onClick={()=>setSize(v)} aria-pressed={v===size}>{v}</button>)}</div><p className="ec-size-note">Sizing and stock quantities will be confirmed before pre-orders open.</p></div>
+          <div className="ec-options"><strong>SIZE</strong><div className="ec-sizes">{SIZES.map(v=><button key={v} type="button" className={v===size?"is-selected":""} onClick={()=>setSize(v)} aria-pressed={v===size}>{v}</button>)}</div><p className="ec-size-note">Sizes S–XL. Please check the size chart before placing a pre-order.</p></div>
           <button type="button" className="ec-preorder-btn" onClick={checkout} disabled={!preorderOpen||submitting}>{preorderOpen?(submitting?"OPENING SECURE CHECKOUT...":"PRE-ORDER"):"PRE-ORDERS OPENING SOON"}</button>
           {error&&<p role="alert" className="ec-checkout-error">{error}</p>}
           {preorderOpen&&<p className="ec-order-note">This is a pre-order. Estimated shipping: {estimatedShip}. Shipping charges appear in secure checkout before payment.</p>}
