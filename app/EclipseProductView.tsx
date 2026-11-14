@@ -8,8 +8,8 @@ const SIZES = ["S", "M", "L", "XL", "2XL"] as const;
 type Color = "black" | "espresso";
 
 const products: Record<Color,{label:string; images:string[]}> = {
-  black: {label:"Black", images:["/wear/eclipse-black-front.webp", "/wear/eclipse-black-back.webp"]},
-  espresso: {label:"Espresso", images:["/wear/eclipse-espresso-front.webp", "/wear/eclipse-espresso-back.webp"]},
+  black: {label:"Black", images:["/wear/ezlipse-black-front.webp.png", "/wear/ezlipse-black-back.webp.png"]},
+  espresso: {label:"Espresso", images:["/wear/ezlipse-espresso-front.webp.png", "/wear/ezlipse-espresso-back.webp.png"]},
 };
 
 export default function EclipseProductView({color,preorderOpen,price,estimatedShip}: {color:Color;preorderOpen:boolean;price:number|null;estimatedShip:string|null}) {
