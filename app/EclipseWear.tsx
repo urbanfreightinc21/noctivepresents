@@ -8,6 +8,7 @@ const products = [
 ] as const;
 
 export default function EclipseWear() {
+  const preordersOpen = process.env.ECLIPSE_PREORDERS_OPEN === "true" && !!process.env.DATABASE_URL && !!process.env.STRIPE_SECRET_KEY && !!process.env.STRIPE_WEBHOOK_SECRET && !!process.env.ECLIPSE_ESTIMATED_SHIP_DATE && !!process.env.ECLIPSE_SHIPPING_CENTS;
   return (
     <>
       <section className="ec-hero section" aria-labelledby="ec-title">
@@ -15,7 +16,7 @@ export default function EclipseWear() {
         <p className="ec-overline">AFTER DARK — DROP 001</p>
         <h1 id="ec-title">ECLIPSE<span>.</span></h1>
         <p className="ec-hero-lead">THE ECLIPSE ZIP-UP HOODIE.</p>
-        <div className="ec-hero-foot"><span>BLACK / ESPRESSO</span><span>PRE-ORDERS OPENING SOON</span></div>
+        <div className="ec-hero-foot"><span>BLACK / ESPRESSO</span><span>{preordersOpen ? "PRE-ORDERS NOW OPEN" : "PRE-ORDERS OPENING SOON"}</span></div>
       </section>
       <section className="ec-shop section" aria-labelledby="ec-collection">
         <div className="section-index">01 / THE COLLECTION</div>
@@ -40,7 +41,7 @@ export default function EclipseWear() {
       <section className="ec-access section" id="access">
         <div className="section-index">02 / DROP ACCESS</div>
         <div className="ec-access-grid">
-          <div><p className="ec-overline">DROP 001 / AFTER DARK</p><h2>BE FIRST<br />TO KNOW.</h2><p>Pre-order details and the official release announcement, straight to your inbox.</p></div>
+          <div><p className="ec-overline">DROP 001 / AFTER DARK</p><h2>BE FIRST<br />TO KNOW.</h2><p>{preordersOpen ? "Eclipse Drop 001 pre-orders are available now. Limited to 20 pieces per colorway." : "Pre-order details and the official release announcement, straight to your inbox."}</p></div>
           <div className="ec-access-panel"><Waitlist /></div>
         </div>
       </section>
