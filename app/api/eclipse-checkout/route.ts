@@ -1,6 +1,6 @@
 import { NextRequest,NextResponse } from "next/server";
 export const runtime="nodejs";
-const sizes=new Set(["S","M","L","XL","2XL"]);
+const sizes=new Set(["S","M","L","XL"]);
 export async function POST(request:NextRequest){
   if(process.env.ECLIPSE_PREORDERS_OPEN!=="true")return NextResponse.json({error:"Pre-orders are not open yet."},{status:403});
   const secret=process.env.STRIPE_SECRET_KEY;
