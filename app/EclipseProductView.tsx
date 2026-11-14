@@ -12,7 +12,7 @@ const products: Record<Color,{label:string; images:string[]}> = {
   espresso: {label:"Espresso", images:["/wear/eclipse-espresso-front.webp", "/wear/eclipse-espresso-back.webp"]},
 };
 
-export default function EclipseProductView({color,preorderOpen,price}: {color:Color;preorderOpen:boolean;price:number|null}) {
+export default function EclipseProductView({color,preorderOpen,price,estimatedShip}: {color:Color;preorderOpen:boolean;price:number|null;estimatedShip:string|null}) {
   const product=products[color];
   const [size,setSize]=useState<string>("M");
   const [selected,setSelected]=useState(0);
@@ -48,7 +48,7 @@ export default function EclipseProductView({color,preorderOpen,price}: {color:Co
           <div className="ec-options"><strong>SIZE</strong><div className="ec-sizes">{SIZES.map(v=><button key={v} type="button" className={v===size?"is-selected":""} onClick={()=>setSize(v)} aria-pressed={v===size}>{v}</button>)}</div><p className="ec-size-note">Sizing and stock quantities will be confirmed before pre-orders open.</p></div>
           <button type="button" className="ec-preorder-btn" onClick={checkout} disabled={!preorderOpen||submitting}>{preorderOpen?(submitting?"OPENING SECURE CHECKOUT...":"PRE-ORDER"):"PRE-ORDERS OPENING SOON"}</button>
           {error&&<p role="alert" className="ec-checkout-error">{error}</p>}
-          {preorderOpen&&<p className="ec-order-note">This is a pre-order. Check the estimated ship date and shipping information at checkout before paying.</p>}
+          {preorderOpen&&<p className="ec-order-note">This is a pre-order. Estimated shipping: {estimatedShip}. Shipping charges appear in secure checkout before payment.</p>}
           <div className="ec-specs"><h2>PRODUCT DETAILS</h2><p>Oversized, full-zip silhouette with a satin-lined hood, custom NOCTIVE zipper pull, printed white contour detailing, kangaroo pockets, and Eclipse artwork on the back.</p><p>Product images are digital reconstructions. Final color and garment details may vary slightly from the manufactured item.</p></div>
           <Link href="/wear" className="ec-back-link">BACK TO WEAR ↗</Link>
         </div>
