@@ -81,6 +81,7 @@ export async function applyStripeSession(session: {
   payment_intent?:string | {id:string}|null;
   customer_details?:{email?:string|null;name?:string|null;phone?:string|null;address?:unknown}|null;
   shipping_details?:{name?:string|null;address?:unknown}|null;
+  collected_information?:{shipping_details?:{name?:string|null;address?:unknown}|null}|null;
 }, action: "complete" | "async_paid" | "async_failed" | "expired"): Promise<"updated" | "ignored" | "missing"> {
   return transaction(async db => {
     // Select lock makes repeated and out-of-order Stripe notifications idempotent.
@@ -101,8 +102,8 @@ export async function applyStripeSession(session: {
         customer_email=$3,customer_name=$4,shipping_address=$5::jsonb,
         updated_at=NOW() WHERE id=$1`,
         [order.id,typeof session.payment_intent==="string"?session.payment_intent:session.payment_intent?.id||null,
-        session.customer_details?.email||null,session.shipping_details?.name||session.customer_details?.name||null,
-        JSON.stringify(session.shipping_details?.address||session.customer_details?.address||null)]
+        session.customer_details?.email||null,session.collected_information?.shipping_details?.name||session.shipping_details?.name||session.customer_details?.name||null,
+        JSON.stringify(session.collected_information?.shipping_details?.address||session.shipping_details?.address||session.customer_details?.address||null)]
       );
       return "updated";
     }
