@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Waitlist from "../Waitlist";
+import EclipseWear from "../EclipseWear";
 import EventArtwork from "../EventArtwork";
 
 const INSTAGRAM = "https://www.instagram.com/noctivepresents/";
@@ -81,51 +82,7 @@ function WearPage() {
   return (
     <main className="subpage">
       <SiteHeader />
-      <section className="subhero subhero-media">
-        <video autoPlay muted loop playsInline poster="/noctive-poster.png">
-          <source src="/noctive-hero.mp4" type="video/mp4" />
-        </video>
-        <div className="hero-overlay" /><div className="scanline" /><div className="noise" />
-        <div className="subhero-copy">
-          <p className="eyebrow">NOCTIVE / WEAR / DROP 001</p>
-          <h1>AFTER<br /><span>DARK.</span></h1>
-          <div className="subhero-bottom"><span>DROP 001</span><span>DATE / UNANNOUNCED</span><span>ACCESS LIST / OPEN</span></div>
-        </div>
-      </section>
-
-      <section className="section drop-intro" id="access">
-        <div className="section-index">01 / ACCESS</div>
-        <div className="drop-intro-grid">
-          <div><p className="eyebrow">FIRST RELEASE</p><h2>GET DROP<br />ACCESS.</h2></div>
-          <div className="drop-access-panel">
-            <p className="drop-access-copy">Join the email list for the first look, release date and launch notice for Drop 001: After Dark.</p>
-            <Waitlist />
-          </div>
-        </div>
-      </section>
-
-      <section className="section reveal-section">
-        <div className="section-index">02 / DROP 001</div>
-        <div className="reveal-grid">
-          <div className="reveal-card reveal-card-large"><span>001 / COLLECTION</span><strong>AFTER DARK</strong><em>COMING SOON</em><div className="reveal-radar" /></div>
-          <div className="reveal-card"><span>002 / PRODUCT</span><strong>TO BE REVEALED</strong><em>FIRST LOOK / ACCESS LIST</em></div>
-          <div className="reveal-card"><span>003 / RELEASE</span><strong>DATE UNANNOUNCED</strong><em>ACCESS LIST / OPEN</em></div>
-        </div>
-      </section>
-
-      <section className="statement-strip"><span>DROP 001 DETAILS WILL BE REVEALED IN STAGES. THE ACCESS LIST GETS THE FIRST NOTICE.</span></section>
-
-      <section className="section wear-notes">
-        <div className="section-index">03 / ABOUT THE DROP</div>
-        <div className="wear-notes-grid">
-          <h2>WHAT WE<br />WANT TO WEAR.</h2>
-          <div>
-            <p>After Dark is Drop 001, the first Noctive apparel release.</p>
-            <p>Noctive makes limited apparel we actually want to wear, on our terms and released when it feels right.</p>
-            <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="text-link">FOLLOW @NOCTIVEPRESENTS ↗</a>
-          </div>
-        </div>
-      </section>
+      <EclipseWear />
       <SiteFooter />
     </main>
   );
