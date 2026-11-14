@@ -12,7 +12,7 @@ const products: Record<Color,{label:string; images:string[]}> = {
   espresso: {label:"Espresso", images:["/wear/ezlipse-espresso-front.webp.png", "/wear/ezlipse-espresso-back.webp.png"]},
 };
 
-export default function EclipseProductView({color,preorderOpen,price,estimatedShip}: {color:Color;preorderOpen:boolean;price:number|null;estimatedShip:string|null}) {
+export default function EclipseProductView({color,preorderOpen,price,estimatedShip,isTestMode}: {color:Color;preorderOpen:boolean;price:number|null;estimatedShip:string|null;isTestMode:boolean}) {
   const product=products[color];
   const [size,setSize]=useState<string>("M");
   const [selected,setSelected]=useState(0);
@@ -59,8 +59,8 @@ export default function EclipseProductView({color,preorderOpen,price,estimatedSh
       <header className="ec-header"><Link href="/" className="ec-mark">NOCTIVE</Link><nav><Link href="/wear">WEAR</Link><Link href="/events">EVENTS</Link><Link href="/about">ABOUT</Link></nav></header>
       <div className="ec-breadcrumb"><Link href="/wear">WEAR</Link><span>/</span><span>DROP 001</span><span>/</span><span>{product.label.toUpperCase()}</span></div>
       {orderStatus&&<section role="status" aria-live="polite" style={{maxWidth:900,margin:"24px auto",padding:"20px 24px",border:"1px solid #666",borderRadius:8}}>
-        <strong>{orderStatus==="paid"?"TEST PAYMENT CONFIRMED":orderStatus==="checking"?"VERIFYING TEST PAYMENT":orderStatus==="cancelled"?"CHECKOUT CANCELLED":orderStatus==="expired"?"CHECKOUT EXPIRED":orderStatus==="processing"?"PAYMENT STILL PROCESSING":"PAYMENT STATUS NOT VERIFIED"}</strong>
-        <p style={{marginTop:8}}>{orderStatus==="paid"?"Stripe reports that your sandbox payment succeeded. No real money was charged.":orderStatus==="checking"?"Checking your Stripe sandbox transaction.":orderStatus==="cancelled"?"The checkout was cancelled. No new payment was confirmed.":orderStatus==="expired"?"The checkout session expired without a confirmed payment.":orderStatus==="processing"?"Stripe has not confirmed the payment yet. Please check the Stripe sandbox before retrying.":"We could not verify the payment. Check Stripe sandbox payments before attempting another order."}</p>
+        <strong>{orderStatus==="paid"?(isTestMode?"TEST PAYMENT CONFIRMED":"PAYMENT CONFIRMED"):orderStatus==="checking"?"VERIFYING TEST PAYMENT":orderStatus==="cancelled"?"CHECKOUT CANCELLED":orderStatus==="expired"?"CHECKOUT EXPIRED":orderStatus==="processing"?"PAYMENT STILL PROCESSING":"PAYMENT STATUS NOT VERIFIED"}</strong>
+        <p style={{marginTop:8}}>{orderStatus==="paid"?(isTestMode?"Stripe reports that your sandbox payment succeeded. No real money was charged.":"Stripe confirms your payment. Your pre-order has been received; keep your Stripe receipt for your records."):orderStatus==="checking"?"Checking your Stripe sandbox transaction.":orderStatus==="cancelled"?"The checkout was cancelled. No new payment was confirmed.":orderStatus==="expired"?"The checkout session expired without a confirmed payment.":orderStatus==="processing"?"Stripe has not confirmed the payment yet. Please check the Stripe sandbox before retrying.":"We could not verify the payment. Check Stripe sandbox payments before attempting another order."}</p>
       </section>}
       <section className="ec-detail" aria-labelledby="ec-product-name">
         <div className="ec-gallery">
