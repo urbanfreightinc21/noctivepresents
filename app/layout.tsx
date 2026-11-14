@@ -3,6 +3,7 @@ import "./globals.css";
 import "./polish.css";
 import "./v4.css";
 import "./events.css";
+import "./eclipse-wear.css";
 
 const siteUrl = "https://www.noctivepresents.com";
 
