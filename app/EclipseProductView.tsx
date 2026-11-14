@@ -19,6 +19,22 @@ export default function EclipseProductView({color,preorderOpen,price,estimatedSh
   const [submitting,setSubmitting]=useState(false);
   const [error,setError]=useState("");
   const [stock,setStock]=useState<{black:number;espresso:number}|null>(null);
+  const [orderStatus,setOrderStatus]=useState<"checking"|"paid"|"processing"|"expired"|"cancelled"|"unverified"|null>(null);
+  useEffect(()=>{
+    const params=new URLSearchParams(window.location.search);
+    const result=params.get("order");
+    if(result==="cancelled"){setOrderStatus("cancelled");return;}
+    if(result!=="success")return;
+    const sessionId=params.get("session_id");
+    if(!sessionId){setOrderStatus("unverified");return;}
+    let active=true;
+    setOrderStatus("checking");
+    fetch(`/api/eclipse-order-status?session_id=${encodeURIComponent(sessionId)}`,{cache:"no-store"})
+      .then(async r=>{if(!r.ok)throw new Error("Unable to verify order");return r.json();})
+      .then(data=>{if(active)setOrderStatus(data.paymentConfirmed?"paid":data.status==="expired"?"expired":"processing");})
+      .catch(()=>{if(active)setOrderStatus("unverified");});
+    return ()=>{active=false;};
+  },[]);
   useEffect(()=>{
     if(!preorderOpen)return;
     let active=true;
@@ -42,6 +58,10 @@ export default function EclipseProductView({color,preorderOpen,price,estimatedSh
     <main className="ec-page">
       <header className="ec-header"><Link href="/" className="ec-mark">NOCTIVE</Link><nav><Link href="/wear">WEAR</Link><Link href="/events">EVENTS</Link><Link href="/about">ABOUT</Link></nav></header>
       <div className="ec-breadcrumb"><Link href="/wear">WEAR</Link><span>/</span><span>DROP 001</span><span>/</span><span>{product.label.toUpperCase()}</span></div>
+      {orderStatus&&<section role="status" aria-live="polite" style={{maxWidth:900,margin:"24px auto",padding:"20px 24px",border:"1px solid #666",borderRadius:8}}>
+        <strong>{orderStatus==="paid"?"TEST PAYMENT CONFIRMED":orderStatus==="checking"?"VERIFYING TEST PAYMENT":orderStatus==="cancelled"?"CHECKOUT CANCELLED":orderStatus==="expired"?"CHECKOUT EXPIRED":orderStatus==="processing"?"PAYMENT STILL PROCESSING":"PAYMENT STATUS NOT VERIFIED"}</strong>
+        <p style={{marginTop:8}}>{orderStatus==="paid"?"Stripe reports that your sandbox payment succeeded. No real money was charged.":orderStatus==="checking"?"Checking your Stripe sandbox transaction.":orderStatus==="cancelled"?"The checkout was cancelled. No new payment was confirmed.":orderStatus==="expired"?"The checkout session expired without a confirmed payment.":orderStatus==="processing"?"Stripe has not confirmed the payment yet. Please check the Stripe sandbox before retrying.":"We could not verify the payment. Check Stripe sandbox payments before attempting another order."}</p>
+      </section>}
       <section className="ec-detail" aria-labelledby="ec-product-name">
         <div className="ec-gallery">
           <div className="ec-detail-image"><Image src={product.images[selected]} alt={`Eclipse Zip-Up Hoodie ${product.label}, ${selected===0?"front":"back"} view`} fill sizes="(max-width: 900px) 100vw, 60vw" priority /></div>
