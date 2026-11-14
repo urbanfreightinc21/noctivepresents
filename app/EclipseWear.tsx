@@ -3,8 +3,8 @@ import Image from "next/image";
 import Waitlist from "./Waitlist";
 
 const products = [
-  { color: "black", name: "Black", image: "/wear/eclipse-black-front.webp", back: "/wear/eclipse-black-back.webp" },
-  { color: "espresso", name: "Espresso", image: "/wear/eclipse-espresso-front.webp", back: "/wear/eclipse-espresso-back.webp" },
+  { color: "black", name: "Black", image: "/wear/ezlipse-black-front.webp.png", back: "/wear/ezlipse-black-back.webp.png" },
+  { color: "espresso", name: "Espresso", image: "/wear/ezlipse-espresso-front.webp.png", back: "/wear/ezlipse-espresso-back.webp.png" },
 ] as const;
 
 export default function EclipseWear() {
