@@ -57,27 +57,27 @@ export default function EclipseProductView({color,preorderOpen,price,estimatedSh
   }
   return (
     <main className="ec-page">
-      <header className="ec-header"><Link href="/" className="ec-mark">NOCTIVE</Link><nav><Link href="/wear">WEAR</Link><Link href="/events">EVENTS</Link><Link href="/about">ABOUT</Link></nav></header>
+      <header className="ec-header"><Link href="/" className="ec-mark">NOCTIVE</Link><span className="ec-header-edition">AFTER DARK / 001</span><nav><Link href="/wear">WEAR</Link><Link href="/events">EVENTS</Link><Link href="/about">ABOUT</Link></nav></header>
       <div className="ec-breadcrumb"><Link href="/wear">WEAR</Link><span>/</span><span>DROP 001</span><span>/</span><span>{product.label.toUpperCase()}</span></div>
       {orderStatus&&<section role="status" aria-live="polite" style={{maxWidth:900,margin:"24px auto",padding:"20px 24px",border:"1px solid #666",borderRadius:8}}>
         <strong>{orderStatus==="paid"?(isTestMode?"TEST PAYMENT CONFIRMED":"PAYMENT CONFIRMED"):orderStatus==="checking"?(isTestMode?"VERIFYING TEST PAYMENT":"VERIFYING PAYMENT"):orderStatus==="cancelled"?"CHECKOUT CANCELLED":orderStatus==="expired"?"CHECKOUT EXPIRED":orderStatus==="processing"?"PAYMENT STILL PROCESSING":"PAYMENT STATUS NOT VERIFIED"}</strong>
         <p style={{marginTop:8}}>{orderStatus==="paid"?(isTestMode?"Stripe reports that your sandbox payment succeeded. No real money was charged.":"Stripe confirms your payment. Your pre-order has been received; keep your Stripe receipt for your records."):orderStatus==="checking"?(isTestMode?"Checking your Stripe sandbox transaction.":"Checking your payment status."):orderStatus==="cancelled"?"The checkout was cancelled. No new payment was confirmed.":orderStatus==="expired"?"The checkout session expired without a confirmed payment.":orderStatus==="processing"?"Stripe has not confirmed the payment yet. Please check the Stripe sandbox before retrying.":"We could not verify the payment. Check Stripe sandbox payments before attempting another order."}</p>
       </section>}
       <section className="ec-detail" aria-labelledby="ec-product-name">
-        <div className="ec-gallery">
-          <div className="ec-detail-image"><Image src={product.images[selected]} alt={`Eclipse Zip-Up Hoodie ${product.label}, ${selected===0?"front":"back"} view`} fill sizes="(max-width: 900px) 100vw, 60vw" priority /></div>
+        <div className="ec-gallery"><div className="ec-gallery-topline"><span>AD—001 / {product.label.toUpperCase()}</span><span>FRONT / BACK</span></div>
+          <div className="ec-detail-image"><span className="ec-image-corner">ECLIPSE / 001</span><Image src={product.images[selected]} alt={`Eclipse Zip-Up Hoodie ${product.label}, ${selected===0?"front":"back"} view`} fill sizes="(max-width: 900px) 100vw, 60vw" priority /></div>
           <div className="ec-thumbs">
             {product.images.map((src,i)=><button key={src} type="button" className={selected===i?"is-active":""} onClick={()=>setSelected(i)} aria-label={i===0?"Show front":"Show back"} aria-pressed={selected===i}><Image src={src} alt={i===0?"Front view":"Back view"} fill sizes="100px" /></button>)}
           </div>
         </div>
         <div className="ec-product-details">
-          <p className="ec-overline">NOCTIVE / AFTER DARK / DROP 001</p>
-          <h1 id="ec-product-name">ECLIPSE<br/>ZIP-UP HOODIE</h1>
-          <p className="ec-product-sub">{product.label.toUpperCase()} / LIMITED FIRST RELEASE</p>
-          <div className="ec-product-price">{price===null?"PRICE TO BE ANNOUNCED":new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(price/100)}</div>
+          <p className="ec-overline">AFTER DARK — 001 <span className="ec-detail-dot">●</span> {product.label.toUpperCase()}</p>
+          <h1 id="ec-product-name">ECLIPSE<br/><span>ZIP-UP HOODIE</span></h1>
+          <p className="ec-product-sub">DROP 001 / HEAVYWEIGHT OVERSIZED FLEECE</p>
+          <div className="ec-product-price"><span>{price===null?"PRICE TO BE ANNOUNCED":new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(price/100)}</span><small>USD / PRE-ORDER</small></div>
           <div className="ec-options"><strong>COLOR</strong><div className="ec-color-choices"><Link href="/wear/eclipse/black" aria-current={color==="black"?"page":undefined} className={color==="black"?"is-selected":""}><span className="ec-swatch ec-swatch-black"/>BLACK</Link><Link href="/wear/eclipse/espresso" aria-current={color==="espresso"?"page":undefined} className={color==="espresso"?"is-selected":""}><span className="ec-swatch ec-swatch-espresso"/>ESPRESSO</Link></div></div>
           <div className="ec-options"><strong>SIZE</strong><div className="ec-sizes">{SIZES.map(v=><button key={v} type="button" className={v===size?"is-selected":""} onClick={()=>setSize(v)} aria-pressed={v===size}>{v}</button>)}</div><p className="ec-size-note">Oversized fit / measurements below. Select your usual size for a relaxed silhouette.</p><a className="ec-measure-link" href="#ec-size-guide">VIEW SIZE GUIDE ↓</a></div>
-          {preorderOpen&&stock&&<p className="ec-size-note" aria-live="polite">{stock[color] > 0 ? `${stock[color]} AVAILABLE IN ${product.label.toUpperCase()}` : "SOLD OUT"}</p>}
+          {preorderOpen&&stock&&stock[color]<=0&&<p className="ec-size-note" aria-live="polite">SOLD OUT</p>}
           <button type="button" className="ec-preorder-btn" onClick={checkout}
             disabled={!preorderOpen||submitting||!stock||stock[color] <= 0}>
             {!preorderOpen?"PRE-ORDERS OPENING SOON":!stock?"CHECKING AVAILABILITY":stock[color]<=0?"SOLD OUT":submitting?"OPENING SECURE CHECKOUT...":"PRE-ORDER"}
