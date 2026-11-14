@@ -4,7 +4,7 @@ const sizes=new Set(["S","M","L","XL","2XL"]);
 export async function POST(request:NextRequest){
   if(process.env.ECLIPSE_PREORDERS_OPEN!=="true")return NextResponse.json({error:"Pre-orders are not open yet."},{status:403});
   const secret=process.env.STRIPE_SECRET_KEY;
-  const price=Number(process.env.ECLIPSE_PRICE_CENTS);
+  const price=Number(process.env.ECLIPSE_PRICE_CENTS||8500);
   const shipping=Number(process.env.ECLIPSE_SHIPPING_CENTS);
   const estimatedShip=process.env.ECLIPSE_ESTIMATED_SHIP_DATE;
   if(!secret||!Number.isInteger(price)||price<1||!Number.isInteger(shipping)||shipping<0||!estimatedShip)
