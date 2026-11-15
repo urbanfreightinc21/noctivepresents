@@ -742,3 +742,10 @@ footer { padding: 28px 5vw 38px; display: grid; grid-template-columns: 1fr auto 
     min-height: 300px;
   }
 }
+
+
+/* After Dark Drop 001: preserve the approved Espresso back artwork in full color. */
+.wear-teaser-art:has(.wear-teaser-hoodie){background:radial-gradient(ellipse at 50% 45%,#3f3834,#171616 76%)}
+.wear-teaser-art .wear-teaser-hoodie{object-fit:contain;filter:none}
+.wear-teaser-art:has(.wear-teaser-hoodie) .wear-art-shade{background:linear-gradient(180deg,transparent 75%,rgba(0,0,0,.22))}
+.wear-teaser-art:has(.wear-teaser-hoodie) .wear-grid-overlay{opacity:.045}
