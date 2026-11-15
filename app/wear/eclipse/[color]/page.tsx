@@ -12,7 +12,7 @@ export async function generateMetadata({params}:{params:Promise<{color:string}>}
 export default async function EclipseProductPage({params}:{params:Promise<{color:string}>}){
  const {color}=await params;
  if(color!=="black"&&color!=="espresso") notFound();
- const cents=Number(process.env.ECLIPSE_PRICE_CENTS||8500);
+ const cents=8000;
  const ready=false; // Public launch: checkout intentionally disabled.
  return <EclipseProductView color={color as Color} preorderOpen={ready} price={cents>0?cents:null} estimatedShip={"4–6 weeks after order placement (estimated)"} isTestMode={process.env.STRIPE_SECRET_KEY?.startsWith("sk_test_")||false}/>;
 }
