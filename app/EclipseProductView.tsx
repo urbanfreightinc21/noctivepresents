@@ -15,17 +15,18 @@ const products: Record<Color,{label:string; images:string[]}> = {
 export default function EclipseProductView({color,preorderOpen,price,estimatedShip,isTestMode}: {color:Color;preorderOpen:boolean;price:number|null;estimatedShip:string|null;isTestMode:boolean}) {
   const product=products[color];
   const [size,setSize]=useState<string>("M");
-  const [selected,setSelected]=useState(0);
+  const [selected,setSelected]=useState(1);
   const [submitting,setSubmitting]=useState(false);
   const [error,setError]=useState("");
   const [sizeUnit,setSizeUnit]=useState<"in"|"cm">("in");
+  const [deliveryMethod,setDeliveryMethod]=useState<"shipping"|"handoff">("shipping");
   const [stock,setStock]=useState<{black:number;espresso:number}|null>(null);
   const [orderStatus,setOrderStatus]=useState<"checking"|"paid"|"processing"|"expired"|"cancelled"|"unverified"|null>(null);
   useEffect(()=>{
     const params=new URLSearchParams(window.location.search);
     const result=params.get("order");
     if(result==="cancelled"){setOrderStatus("cancelled");return;}
-    if(result!=="success")return;
+    if(result!=="success" || !preorderOpen)return;
     const sessionId=params.get("session_id");
     if(!sessionId){setOrderStatus("unverified");return;}
     let active=true;
@@ -49,7 +50,7 @@ export default function EclipseProductView({color,preorderOpen,price,estimatedSh
     if (!preorderOpen || submitting || !stock || stock[color] <= 0) return;
     setSubmitting(true);setError("");
     try {
-      const res=await fetch("/api/eclipse-checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({color,size})});
+      const res=await fetch("/api/eclipse-checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({color,size,deliveryMethod})});
       const data=await res.json();
       if(!res.ok||!data.url||!data.url.startsWith("https://checkout.stripe.com/")) throw new Error(data.error||"Checkout is temporarily unavailable.");
       window.location.assign(data.url);
@@ -64,8 +65,8 @@ export default function EclipseProductView({color,preorderOpen,price,estimatedSh
         <p style={{marginTop:8}}>{orderStatus==="paid"?(isTestMode?"Stripe reports that your sandbox payment succeeded. No real money was charged.":"Stripe confirms your payment. Your pre-order has been received; keep your Stripe receipt for your records."):orderStatus==="checking"?(isTestMode?"Checking your Stripe sandbox transaction.":"Checking your payment status."):orderStatus==="cancelled"?"The checkout was cancelled. No new payment was confirmed.":orderStatus==="expired"?"The checkout session expired without a confirmed payment.":orderStatus==="processing"?"Stripe has not confirmed the payment yet. Please check the Stripe sandbox before retrying.":"We could not verify the payment. Check Stripe sandbox payments before attempting another order."}</p>
       </section>}
       <section className="ec-detail" aria-labelledby="ec-product-name">
-        <div className="ec-gallery"><div className="ec-gallery-topline"><span>AD—001 / {product.label.toUpperCase()}</span><span>FRONT / BACK</span></div>
-          <div className="ec-detail-image"><span className="ec-image-corner">ECLIPSE / 001</span><Image src={product.images[selected]} alt={`Eclipse Zip-Up Hoodie ${product.label}, ${selected===0?"front":"back"} view`} fill sizes="(max-width: 900px) 100vw, 60vw" priority /></div>
+        <div className="ec-gallery"><div className="ec-gallery-topline"><span>AD—001 / {product.label.toUpperCase()}</span><span>BACK ARTWORK / FRONT DETAILS</span></div>
+          <div className="ec-detail-image"><span className="ec-image-corner">{selected===1?"AFTER DARK / BACK":"ECLIPSE / FRONT"}</span><Image src={product.images[selected]} alt={`Eclipse Zip-Up Hoodie ${product.label}, ${selected===0?"front":"back"} view`} fill sizes="(max-width: 900px) 100vw, 60vw" priority /></div>
           <div className="ec-thumbs">
             {product.images.map((src,i)=><button key={src} type="button" className={selected===i?"is-active":""} onClick={()=>setSelected(i)} aria-label={i===0?"Show front":"Show back"} aria-pressed={selected===i}><Image src={src} alt={i===0?"Front view":"Back view"} fill sizes="100px" /></button>)}
           </div>
@@ -83,7 +84,8 @@ export default function EclipseProductView({color,preorderOpen,price,estimatedSh
             {!preorderOpen?"PRE-ORDERS OPENING SOON":!stock?"CHECKING AVAILABILITY":stock[color]<=0?"SOLD OUT":submitting?"OPENING SECURE CHECKOUT...":"PRE-ORDER"}
           </button>
           {error&&<p role="alert" className="ec-checkout-error">{error}</p>}
-          {preorderOpen&&<p className="ec-order-note">PRE-ORDER / ESTIMATED DISPATCH 4–6 WEEKS AFTER PURCHASE. SHIPPING CALCULATED AT CHECKOUT.</p>}
+          <div className="ec-delivery-options"><strong>FULFILLMENT PREFERENCE</strong><p>Choose shipping or free local handoff when pre-orders open.</p><div className="ec-delivery-choices" role="group" aria-label="Delivery preference"><button type="button" className={deliveryMethod==="shipping"?"is-selected":""} onClick={()=>setDeliveryMethod("shipping")} aria-pressed={deliveryMethod==="shipping"}><span>STANDARD SHIPPING</span><b>$12.95</b></button><button type="button" className={deliveryMethod==="handoff"?"is-selected":""} onClick={()=>setDeliveryMethod("handoff")} aria-pressed={deliveryMethod==="handoff"}><span>LOCAL HANDOFF</span><b>FREE</b></button></div><p className="ec-delivery-fine">{deliveryMethod==="handoff"?"Personal handoff by arrangement only. We'll contact you after purchase to confirm a convenient public meeting point. No address or pickup time is guaranteed.":"Standard U.S. shipping with tracking after dispatch."}</p></div>
+          <p className="ec-order-note">{preorderOpen?"PRE-ORDER / ESTIMATED DISPATCH 4–6 WEEKS AFTER PURCHASE. STANDARD U.S. SHIPPING $12.95.":"PRE-ORDERS NOT YET OPEN / ESTIMATED DISPATCH 4–6 WEEKS AFTER PURCHASE ONCE ORDERS OPEN."}</p>
           <div className="ec-editorial-intro">
             <span className="ec-detail-kicker">DROP 001 / AFTER DARK</span>
             <p>Heavyweight fleece. Oversized construction. A double-layer hood and eclipse artwork, finished with contrast contour lines.</p>
@@ -120,7 +122,7 @@ export default function EclipseProductView({color,preorderOpen,price,estimatedSh
             <details>
               <summary>03 / PRE-ORDER & SHIPPING <span aria-hidden="true">+</span></summary>
               <p className="ec-info-description">This is a pre-order. Estimated dispatch is <strong>4–6 weeks from order placement</strong>, not delivery. Your payment is collected at checkout. Tracking will be emailed after your order ships.</p>
-              <p className="ec-info-description">Standard US shipping: $12.95, shown at checkout. Estimated dispatch times may change if manufacturing or customs is delayed. We will contact affected customers with updated options, including cancellation and refund where required.</p>
+              <p className="ec-info-description">Standard U.S. shipping: $12.95, or free local handoff by arrangement where available. Handoff customers will be contacted to arrange collection; a public meeting point will be confirmed after purchase. Estimated dispatch times may change if manufacturing or customs is delayed. We will contact affected customers with updated options, including cancellation and refund where required.</p>
             </details>
             <details>
               <summary>04 / FAQ <span aria-hidden="true">+</span></summary>

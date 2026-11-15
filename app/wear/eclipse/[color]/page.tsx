@@ -12,7 +12,7 @@ export async function generateMetadata({params}:{params:Promise<{color:string}>}
 export default async function EclipseProductPage({params}:{params:Promise<{color:string}>}){
  const {color}=await params;
  if(color!=="black"&&color!=="espresso") notFound();
- const cents=Number(process.env.ECLIPSE_PRICE_CENTS||8500);
+ const cents=Number(process.env.ECLIPSE_PRICE_CENTS||8000);
  const ready=process.env.ECLIPSE_PREORDERS_OPEN==="true"&&!!process.env.STRIPE_SECRET_KEY&&Number.isInteger(cents)&&cents>0&&!!process.env.ECLIPSE_ESTIMATED_SHIP_DATE&&!!process.env.ECLIPSE_SHIPPING_CENTS&&!!process.env.STRIPE_WEBHOOK_SECRET&&!!process.env.DATABASE_URL;
  return <EclipseProductView color={color as Color} preorderOpen={ready} price={cents>0?cents:null} estimatedShip={process.env.ECLIPSE_ESTIMATED_SHIP_DATE||null} isTestMode={process.env.STRIPE_SECRET_KEY?.startsWith("sk_test_")||false}/>;
 }

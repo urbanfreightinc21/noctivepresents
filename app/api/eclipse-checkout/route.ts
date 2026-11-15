@@ -12,7 +12,7 @@ export async function POST(request:NextRequest) {
     return NextResponse.json({error:"Pre-orders are not open yet."},{status:403});
   const key=process.env.STRIPE_SECRET_KEY;
   const webhookSecret=process.env.STRIPE_WEBHOOK_SECRET;
-  const price=Number(process.env.ECLIPSE_PRICE_CENTS||8500);
+  const price=Number(process.env.ECLIPSE_PRICE_CENTS||8000);
   const shipping=Number(process.env.ECLIPSE_SHIPPING_CENTS);
   const estimatedShip=process.env.ECLIPSE_ESTIMATED_SHIP_DATE;
   if(!key||!webhookSecret||!process.env.DATABASE_URL||!estimatedShip||
@@ -20,10 +20,11 @@ export async function POST(request:NextRequest) {
     !Number.isSafeInteger(shipping)||shipping<0)
     return NextResponse.json({error:"Pre-order checkout is not configured."},{status:503});
 
-  let input: {color?:unknown;size?:unknown};
+  let input: {color?:unknown;size?:unknown;deliveryMethod?:unknown};
   try{input=await request.json();}catch{return NextResponse.json({error:"Invalid selection."},{status:400});}
   const {color,size}=input;
-  if(typeof color!=="string"||typeof size!=="string"||!colors.has(color)||!sizes.has(size))
+  const deliveryMethod=input.deliveryMethod??"shipping";
+  if(typeof color!=="string"||typeof size!=="string"||!colors.has(color)||!sizes.has(size)||(deliveryMethod!=="shipping"&&deliveryMethod!=="handoff"))
     return NextResponse.json({error:"Select a valid color and size."},{status:400});
 
   const expiry=Math.floor(Date.now()/1000)+1800; // Stripe Checkout sessions expire in 30 min.
@@ -46,16 +47,20 @@ export async function POST(request:NextRequest) {
           }
         }
       }],
-      shipping_address_collection:{allowed_countries:["US"]},
-      shipping_options:[{shipping_rate_data:{
-        type:"fixed_amount",
-        fixed_amount:{amount:shipping,currency:"usd"},
-        display_name:"Standard shipping"
-      }}],
+      ...(deliveryMethod==="shipping" ? {
+        shipping_address_collection:{allowed_countries:["US" as const]},
+        shipping_options:[{shipping_rate_data:{
+          type:"fixed_amount" as const,
+          fixed_amount:{amount:shipping,currency:"usd"},
+          display_name:"Standard shipping"
+        }}]
+      } : {
+        billing_address_collection:"required" as const
+      }),
       phone_number_collection:{enabled:true},
       automatic_tax:{enabled:process.env.STRIPE_AUTOMATIC_TAX==="true"},
-      metadata:{order_id:orderId,product:"eclipse-zip-up-hoodie",color,size,drop:"001",estimated_ship_date:estimatedShip},
-      payment_intent_data:{metadata:{order_id:orderId,product:"eclipse-zip-up-hoodie",color,size}},
+      metadata:{order_id:orderId,product:"eclipse-zip-up-hoodie",color,size,drop:"001",estimated_ship_date:estimatedShip,delivery_method:deliveryMethod},
+      payment_intent_data:{metadata:{order_id:orderId,product:"eclipse-zip-up-hoodie",color,size,delivery_method:deliveryMethod}},
       success_url:`${request.nextUrl.origin}/wear/eclipse/${color}?order=success&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url:`${request.nextUrl.origin}/wear/eclipse/${color}?order=cancelled`,
     },{idempotencyKey:`eclipse-${orderId}`});
