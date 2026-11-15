@@ -1,83 +1,72 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Waitlist from "./Waitlist";
 
-const products = [
-  { color: "black", name: "Black", front: "/wear/ezlipse-black-front.webp.png", back: "/wear/ezlipse-black-back.webp.png" },
-  { color: "espresso", name: "Espresso", front: "/wear/ezlipse-espresso-front.webp.png", back: "/wear/ezlipse-espresso-back.webp.png" },
-] as const;
+const variants = {
+  black: {
+    label: "BLACK",
+    index: "01",
+    back: "/wear/ezlipse-black-back.webp.png",
+    title: "Black Eclipse Zip-Up Hoodie, back graphic",
+    colorClass: "black",
+  },
+  espresso: {
+    label: "ESPRESSO",
+    index: "02",
+    back: "/wear/ezlipse-espresso-back.webp.png",
+    title: "Espresso Eclipse Zip-Up Hoodie, back graphic",
+    colorClass: "espresso",
+  },
+} as const;
+
+type Colorway = keyof typeof variants;
 
 export default function EclipseWear() {
+  const [color, setColor] = useState<Colorway>("black");
+  const active = variants[color];
+
   return (
-    <div className="ec-v2">
-      <section className="ec-drop-hero" aria-labelledby="ec-drop-title">
-        <div className="ec-drop-topbar"><span>NOCTIVE / WEAR DIVISION</span><span>AFTER DARK / 001</span><span className="ec-drop-top-status"><i aria-hidden="true" /> PRE-ORDERS LOCKED</span></div>
-        <div className="ec-drop-frame">
-          <div className="ec-drop-type">
-            <p className="ec-v2-kicker"><span className="ec-v2-cross">✳</span> THE FIRST RELEASE / AD–001</p>
-            <h1 id="ec-drop-title">AFTER<br/><em>DARK.</em></h1>
-            <p className="ec-drop-subtitle">ECLIPSE ZIP-UP HOODIE<br/>BLACK / ESPRESSO</p>
-            <Link href="#ec-v2-collection" className="ec-v2-action">DISCOVER THE DROP <span aria-hidden="true">↗</span></Link>
-          </div>
-          <div className="ec-drop-visual">
-            <div className="ec-drop-dial" aria-hidden="true"><div /></div>
-            <div className="ec-drop-garment ec-drop-garment-black">
-              <Image src="/wear/ezlipse-black-back.webp.png" alt="Black Eclipse zip-up hoodie — back showing the After Dark graphic" fill priority sizes="(max-width: 800px) 80vw, 35vw" />
+    <div className="nvwear">
+      <section className="nvwear-stage" aria-labelledby="nvwear-title">
+        <div className="nvwear-meta"><span>NOCTIVE / WEAR</span><span>AFTER DARK COLLECTION</span><span>RELEASE 001</span></div>
+        <div className="nvwear-stage-grid">
+          <div className="nvwear-display">
+            <div className="nvwear-display-index"><span>OBJECT 001</span><span>REAR VIEW</span></div>
+            <div className="nvwear-ring" aria-hidden="true"/>
+            <div className="nvwear-ghost" aria-hidden="true">01</div>
+            <div className="nvwear-garment" key={color}>
+              <Image src={active.back} alt={active.title} fill priority sizes="(max-width: 800px) 100vw, 64vw" />
             </div>
-            <div className="ec-drop-garment ec-drop-garment-espresso">
-              <Image src="/wear/ezlipse-espresso-back.webp.png" alt="Espresso Eclipse zip-up hoodie — back graphic" fill priority sizes="(max-width: 800px) 48vw, 22vw" />
-            </div>
-            <span className="ec-drop-visual-caption">FIG. 01 / REAR GRAPHIC</span>
-            <span className="ec-drop-visual-number" aria-hidden="true">001</span>
+            <div className="nvwear-display-bottom"><span>400 GSM / HEAVYWEIGHT</span><span>ARTWORK / DROP 001</span></div>
           </div>
-        </div>
-        <div className="ec-drop-bottom"><span>EST. CALIFORNIA / NOCTIVE</span><span>400G HEAVYWEIGHT FLEECE</span><span>SCROLL TO EXPLORE ↓</span></div>
-      </section>
-
-      <div className="ec-v2-marquee" aria-label="After Dark Drop 001, Eclipse Zip-Up Hoodie">
-        <span>AFTER DARK 001</span><b aria-hidden="true">✳</b><span>ECLIPSE ZIP-UP</span><b aria-hidden="true">✳</b><span>NOCTIVE WEAR</span><b aria-hidden="true">✳</b><span>AFTER DARK 001</span>
-      </div>
-
-      <section className="ec-v2-release section" id="ec-v2-collection" aria-labelledby="ec-v2-release-title">
-        <div className="ec-v2-section-top"><span>01 / THE RELEASE</span><span>001 — ECLIPSE SERIES</span></div>
-        <div className="ec-v2-release-head"><h2 id="ec-v2-release-title">THE BACK<br/><em>SPEAKS.</em></h2><p>Drop 001 / The Eclipse Zip-Up Hoodie. Two colorways. One graphic. Built around the details.</p></div>
-        <div className="ec-v2-products">
-          {products.map((item, i) => (
-            <Link className={`ec-v2-product ec-v2-product-${item.color}`} href={`/wear/eclipse/${item.color}`} key={item.color}>
-              <div className="ec-v2-product-image">
-                <div className="ec-v2-product-grid" aria-hidden="true" />
-                <span className="ec-v2-card-index">0{i + 1} / 02 — {item.name.toUpperCase()}</span>
-                <Image className="ec-v2-back" src={item.back} alt={`Rear view of the ${item.name} Eclipse Zip-Up Hoodie, featuring After Dark artwork`} fill sizes="(max-width: 760px) 100vw, 49vw" />
-                <div className="ec-v2-front-peek" aria-hidden="true"><Image src={item.front} alt="" fill sizes="110px" /></div>
-                <span className="ec-v2-card-arrow" aria-hidden="true">↗</span>
-                <span className="ec-v2-back-label">BACK VIEW / 001</span>
+          <div className="nvwear-content">
+            <div className="nvwear-heading-label"><span className="nvwear-line"/>THE FIRST DROP</div>
+            <h1 id="nvwear-title">ECLIPSE<span>.</span></h1>
+            <p className="nvwear-subtitle">ZIP-UP HOODIE / AFTER DARK 001</p>
+            <p className="nvwear-intro">An oversized zip-up built around the Eclipse back graphic. Heavyweight fleece, satin-lined hood, signature contour work.</p>
+            <div className="nvwear-switch" role="group" aria-label="Choose colorway">
+              <span className="nvwear-switch-label">SELECT COLORWAY <span>{active.index} / 02</span></span>
+              <div className="nvwear-switch-items">
+                <button type="button" onClick={() => setColor("black")} className={color === "black" ? "nvwear-active" : ""} aria-pressed={color === "black"}><i className="nvwear-dot-black" aria-hidden="true" />BLACK</button>
+                <button type="button" onClick={() => setColor("espresso")} className={color === "espresso" ? "nvwear-active" : ""} aria-pressed={color === "espresso"}><i className="nvwear-dot-espresso" aria-hidden="true" />ESPRESSO</button>
               </div>
-              <div className="ec-v2-product-meta"><div><span>NOCTIVE / AFTER DARK 001</span><h3>ECLIPSE ZIP-UP <i>— {item.name.toUpperCase()}</i></h3></div><div className="ec-v2-product-price"><strong>$80</strong><span>EXPLORE PRODUCT ↗</span></div></div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="ec-v2-feature" aria-labelledby="ec-v2-feature-title">
-        <div className="ec-v2-feature-rail"><span>02 / ARTWORK STUDY</span><span>AFTER DARK — DROP 001</span></div>
-        <div className="ec-v2-feature-layout">
-          <div className="ec-v2-feature-image"><Image src="/wear/ezlipse-espresso-back.webp.png" alt="Espresso Eclipse hoodie back artwork close presentation" fill sizes="(max-width: 760px) 100vw, 50vw" /><span>REAR / ESPRESSO</span></div>
-          <div className="ec-v2-feature-copy">
-            <span className="ec-v2-kicker">THE ARTWORK / AD-001</span>
-            <h2>THE<br/>ECLIPSE<span>.</span></h2>
-            <p>The back graphic takes focus. A heavyweight, oversized zip-up with contrast contour detailing, satin-lined hood and signature Eclipse artwork.</p>
-            <div className="ec-v2-feature-specs"><span>01 — 400G FLEECE</span><span>02 — OVERSIZED FIT</span><span>03 — SATIN-LINED HOOD</span><span>04 — TWO COLORWAYS</span></div>
-            <Link href="/wear/eclipse/espresso" className="ec-v2-action ec-v2-feature-action">EXPLORE THE DETAILS <span aria-hidden="true">↗</span></Link>
+            </div>
+            <div className="nvwear-buy-row"><strong>$80<span>.00</span></strong><span>PRE-ORDERS OPENING SOON</span></div>
+            <Link className="nvwear-link" href={`/wear/eclipse/${color}`}>VIEW {active.label} HOODIE <span>VIEW DETAILS</span></Link>
+            <p className="nvwear-smallprint">Standard U.S. shipping or free local handoff by arrangement when ordering opens.</p>
           </div>
         </div>
       </section>
-
-      <section className="ec-v2-access section" id="access" aria-labelledby="ec-v2-access-title">
-        <div className="ec-v2-section-top"><span>03 / ACCESS</span><span>RELEASE STATUS / NOT YET OPEN</span></div>
-        <div className="ec-v2-access-grid">
-          <div><span className="ec-v2-kicker">AFTER DARK / DROP 001</span><h2 id="ec-v2-access-title">NOT<br/><em>YET.</em></h2><p>Pre-orders are not open. Join the list for release updates.</p></div>
-          <div className="ec-v2-access-panel"><div className="ec-v2-access-panel-index">NOCTIVE / DROP NOTIFICATIONS <span>001</span></div><Waitlist /></div>
+      <section className="nvwear-lower section" id="access" aria-label="Release updates">
+        <div className="nvwear-lower-id">RELEASE / 001</div>
+        <div className="nvwear-lower-grid">
+          <div><span className="nvwear-lower-kicker">NOCTIVE AFTER DARK</span><h2>FIRST<br/>ACCESS.</h2><p>Sign up to be notified when pre-orders open.</p></div>
+          <div className="nvwear-signup"><Waitlist /></div>
         </div>
+        <div className="nvwear-footerline"><span>NOCTIVE WEAR</span><span>ECLIPSE ZIP-UP</span><span>DROP 001</span></div>
       </section>
     </div>
   );
