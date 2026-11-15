@@ -31,7 +31,6 @@ export default function EclipseWear() {
   return (
     <div className="nvwear">
       <section className="nvwear-stage" aria-labelledby="nvwear-title">
-        <div className="nvwear-meta"><span>NOCTIVE / WEAR</span><span>AFTER DARK COLLECTION</span><span>RELEASE 001</span></div>
         <div className="nvwear-stage-grid">
           <div className="nvwear-display">
             <div className="nvwear-display-index"><span>OBJECT 001</span><span>REAR VIEW</span></div>

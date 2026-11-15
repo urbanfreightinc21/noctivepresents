@@ -53,3 +53,25 @@
 @media(max-width:800px){.nvwear-stage{min-height:0}.nvwear-meta{margin:0 23px;min-height:53px;font-size:.51rem}.nvwear-meta span:nth-child(2){display:none}.nvwear-stage-grid{grid-template-columns:1fr}.nvwear-display{height:min(72vh,670px);min-height:450px;border-right:0;border-bottom:1px solid #444}.nvwear-garment{inset:3% 7% 1%}.nvwear-ring{width:min(100vw,650px)}.nvwear-content{padding:49px 23px 65px}.nvwear-content h1{font-size:clamp(4.2rem,14vw,8rem);margin-top:23px}.nvwear-intro{max-width:550px}.nvwear-lower-grid{grid-template-columns:1fr;gap:28px;padding:44px 0 56px}.nvwear-lower{padding-top:50px!important}.nvwear-lower h2{font-size:clamp(4rem,13vw,7rem)}}
 @media(max-width:480px){.nvwear-display{height:510px;min-height:0}.nvwear-display-index,.nvwear-display-bottom{font-size:.49rem}.nvwear-garment{inset:6% 1% 2%}.nvwear-content h1{font-size:clamp(3.6rem,13.8vw,5.2rem)}.nvwear-switch-items button{font-size:.63rem;padding:13px 10px;min-height:58px}.nvwear-buy-row{margin-top:27px}.nvwear-lower h2{font-size:3.6rem}.nvwear-footerline{font-size:.45rem}}
 @media(prefers-reduced-motion:reduce){.nvwear-garment{animation:none}.nvwear-link,.nvwear-switch-items button{transition:none}}
+
+/* Wear-only navigation: reserve its own row instead of overlaying the product showcase. */
+.subpage:has(> .nvwear) > .nav{
+  position:relative;
+  inset:auto;
+  z-index:70;
+  width:100%;
+  min-height:72px;
+  background:#0d0e0f;
+  border-bottom:1px solid #333536;
+  mix-blend-mode:normal;
+  backdrop-filter:none;
+  padding:18px 4.3vw;
+}
+.subpage:has(> .nvwear) > .nav .nav-brand,
+.subpage:has(> .nvwear) > .nav nav a,
+.subpage:has(> .nvwear) > .nav .nav-social{
+  color:#eee;
+}
+@media(max-width:700px){
+ .subpage:has(> .nvwear) > .nav{min-height:64px;padding:14px 22px}
+}
