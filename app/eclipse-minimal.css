@@ -1,0 +1,84 @@
+
+/* NOCTIVE / Wear Drop 001 — minimal industrial art direction */
+.ew-min{color:#eee;background:#0b0b0c;overflow:hidden}
+.ew-min a{color:inherit}
+.ew-stage{position:relative;isolation:isolate;min-height:740px;height:min(900px,calc(100svh - 70px));display:flex;flex-direction:column;background:radial-gradient(ellipse at 76% 50%,#282829 0%,#141516 35%,#090a0b 75%);overflow:hidden}
+.ew-stage:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,transparent calc(50% - .5px),rgba(255,255,255,.045) 50%,transparent calc(50% + .5px)),repeating-linear-gradient(0deg,transparent 0 117px,rgba(255,255,255,.025) 118px);pointer-events:none}
+.ew-stage-top,.ew-stage-bottom{position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 5vw;padding:21px 0;border-bottom:1px solid #555657;color:#bdbdbc;font-size:.62rem;font-weight:750;letter-spacing:.17em}
+.ew-stage-bottom{border-bottom:0;border-top:1px solid #555657}
+.ew-stage-center{position:relative;display:grid;grid-template-columns:48% 52%;align-items:center;flex:1;min-height:0}
+.ew-headline{padding:25px 0 35px 5vw;position:relative;z-index:3}
+.ew-overline{font-size:.68rem;color:#c5c5c2;letter-spacing:.27em;font-weight:700}
+.ew-headline h1{font-size:clamp(5.6rem,12.3vw,13.8rem);font-weight:950;letter-spacing:-.118em;line-height:.75;margin:35px 0 40px;white-space:nowrap}
+.ew-headline h1 span{color:transparent;-webkit-text-stroke:1.4px #f0f0ee}
+.ew-headline h1 b{font-weight:950;color:#a4a29d}
+.ew-headline p{font-size:.73rem;letter-spacing:.2em;font-weight:700;color:#c4c4c0;margin:0 0 42px}
+.ew-stage-cta{display:inline-flex;justify-content:space-between;align-items:center;min-width:245px;gap:35px;background:#e8e8e4;color:#171718!important;text-decoration:none;font-size:.65rem;font-weight:850;letter-spacing:.14em;padding:17px 20px;transition:background .2s}
+.ew-stage-cta:hover{background:#bcbdbb}
+.ew-stage-cta span{font-size:1.15rem}
+.ew-images{position:relative;height:100%;min-width:0}
+.ew-image-sphere{position:absolute;top:49%;left:43%;width:min(50vw,650px);aspect-ratio:1;border:1px solid rgba(255,255,255,.15);border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 70px rgba(255,255,255,.013),0 0 0 140px rgba(255,255,255,.009);pointer-events:none}
+.ew-image-item{position:absolute;filter:drop-shadow(0 25px 18px rgba(0,0,0,.58))}
+.ew-image-item img{object-fit:contain}
+.ew-image-black{top:0;left:-23%;height:100%;width:105%;z-index:2;transform:rotate(-6deg)}
+.ew-image-brown{top:17%;left:41%;height:79%;width:66%;z-index:1;transform:rotate(9deg)}
+.ew-image-caption{position:absolute;right:6%;bottom:7%;color:#d7d6d2;font-size:.55rem;font-weight:700;letter-spacing:.18em;z-index:3}
+.ew-select{padding-top:95px!important;padding-bottom:105px!important}
+.ew-section-id{border-top:1px solid #656565;padding-top:16px;display:flex;justify-content:space-between;gap:10px;color:#b9b8b4;font-size:.63rem;font-weight:750;letter-spacing:.16em}
+.ew-select-title{display:flex;align-items:end;justify-content:space-between;gap:45px;margin:45px 0 50px}
+.ew-select-title h2{font-size:clamp(3.3rem,7.5vw,8rem);line-height:.85;letter-spacing:-.085em;font-weight:930;margin:0}
+.ew-select-title h2 span{color:#8a8985}
+.ew-select-title p{max-width:275px;color:#aaa9a5;line-height:1.65;font-size:.91rem;margin:0 0 5px}
+.ew-options{border-top:1px solid #535352}
+.ew-option{display:grid;grid-template-columns:45px 50px 1fr 110px 35px;align-items:center;gap:22px;padding:29px 0;border-bottom:1px solid #535352;text-decoration:none;transition:padding .2s,background .2s}
+.ew-option:hover{padding-left:15px;padding-right:15px;background:#1b1c1d}
+.ew-option-num{font-size:.64rem;letter-spacing:.13em;color:#999}
+.ew-option-swatch{width:44px;height:44px;border:1px solid #737373}
+.ew-option-black{background:#101010}
+.ew-option-espresso{background:#604035}
+.ew-option strong{font-size:clamp(1.9rem,3.9vw,4rem);font-weight:900;letter-spacing:-.07em}
+.ew-option-price{font-size:clamp(1.1rem,2vw,1.8rem);font-weight:700}
+.ew-option-arrow{font-size:1.7rem}
+.ew-order-foot{display:flex;justify-content:space-between;gap:18px;margin-top:20px;color:#93938e;font-size:.61rem;letter-spacing:.1em;line-height:1.5}
+.ew-register{padding-top:94px!important;padding-bottom:125px!important;background:linear-gradient(140deg,#191a1b,#0b0b0c 65%);border-top:1px solid #414343}
+.ew-register-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding-top:50px}
+.ew-register h2{font-size:clamp(4.1rem,8.2vw,9rem);line-height:.82;font-weight:950;letter-spacing:-.09em;margin:0}
+.ew-register h2 span{color:#999}
+.ew-register-grid>div:first-child p{font-size:.9rem;color:#a9aaa8;line-height:1.6;margin-top:27px}
+.ew-register-form{padding:clamp(25px,4vw,55px);border:1px solid #555;background:#151617}
+@media(max-width:950px){
+ .ew-stage{height:790px}
+ .ew-headline h1{font-size:clamp(4.5rem,12vw,8rem)}
+ .ew-image-black{left:-34%;width:125%}
+ .ew-image-brown{left:40%;width:75%}
+ .ew-select-title h2{font-size:clamp(3.3rem,8vw,6rem)}
+}
+@media(max-width:700px){
+ .ew-stage{min-height:760px;height:auto}
+ .ew-stage-top,.ew-stage-bottom{margin:0 22px;font-size:.5rem;padding:15px 0}
+ .ew-stage-top span:nth-child(2),.ew-stage-bottom span:nth-child(2){display:none}
+ .ew-stage-center{display:flex;flex-direction:column-reverse;align-items:stretch}
+ .ew-images{height:400px;flex:none}
+ .ew-image-black{left:0;top:-6%;width:80%;height:113%}
+ .ew-image-brown{left:51%;top:11%;width:49%;height:90%}
+ .ew-image-sphere{left:51%;width:420px}
+ .ew-headline{padding:5px 22px 45px}
+ .ew-headline h1{font-size:clamp(4rem,17vw,7rem);margin:20px 0 26px}
+ .ew-overline{font-size:.56rem}
+ .ew-headline p{margin-bottom:27px;font-size:.61rem}
+ .ew-select{padding-top:65px!important;padding-bottom:75px!important}
+ .ew-select-title{display:block;margin:33px 0}
+ .ew-select-title h2{font-size:clamp(3.2rem,11vw,5rem)}
+ .ew-select-title p{margin-top:22px}
+ .ew-option{grid-template-columns:24px 32px 1fr 45px 20px;gap:10px;padding:21px 0}
+ .ew-option-swatch{width:30px;height:30px}
+ .ew-option strong{font-size:clamp(1.25rem,5.3vw,2.2rem)}
+ .ew-option-price{font-size:1rem}
+ .ew-option-arrow{font-size:1.3rem}
+ .ew-order-foot{flex-direction:column;gap:7px;font-size:.55rem}
+ .ew-register{padding-top:65px!important;padding-bottom:75px!important}
+ .ew-register-grid{grid-template-columns:1fr;gap:30px;padding-top:35px}
+ .ew-register h2{font-size:clamp(4rem,15vw,7rem)}
+ .ew-register-form{padding:22px}
+}
+@media(prefers-reduced-motion:reduce){.ew-stage-cta,.ew-option{transition:none!important}}

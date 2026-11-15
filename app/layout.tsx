@@ -4,6 +4,7 @@ import "./polish.css";
 import "./v4.css";
 import "./events.css";
 import "./eclipse-wear.css";
+import "./eclipse-minimal.css";
 
 const siteUrl = "https://www.noctivepresents.com";
 
