@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Waitlist from "../Waitlist";
 import EclipseWear from "../EclipseWear";
 import EventArtwork from "../EventArtwork";
 
-const INSTAGRAM = "https://www.instagram.com/noctivepresents/";
 const validSections = ["wear", "events", "archive", "privacy", "terms"] as const;
 type Section = (typeof validSections)[number];
 
@@ -22,8 +20,8 @@ export async function generateMetadata({ params }: { params: Promise<{ section: 
       description: "Explore NOCTIVE Wear and Drop 001: After Dark, the first limited apparel release from NOCTIVE.",
     },
     events: {
-      title: "Upcoming Events — After Dark 001 & 002",
-      description: "Upcoming Noctive events in Fresno: IKU on November 21, 2026 and Junkie Kid on January 16, 2027.",
+      title: "Events — Noctive After Dark",
+      description: "See Junkie Kid at Los Arcos in Fresno on January 16, 2027, and revisit IKU at After Dark 001.",
     },
     archive: {
       title: "Archive",
@@ -97,29 +95,12 @@ function EventsPage() {
         <div className="subhero-copy">
           <p className="eyebrow">NOCTIVE / LIVE EXPERIENCES</p>
           <h1>UPCOMING<br /><span>EVENTS.</span></h1>
-          <div className="subhero-bottom"><span>AFTER DARK / 001 &amp; 002</span><span>FRESNO, CALIFORNIA</span><span>TICKETS / ON SALE</span></div>
+          <div className="subhero-bottom"><span>AFTER DARK / 002</span><span>FRESNO, CALIFORNIA</span><span>TICKETS / ON SALE</span></div>
         </div>
       </section>
       <section className="section noctive-events-list" aria-label="Upcoming events">
         <div className="section-index">01 / UPCOMING EVENTS</div>
         <div className="noctive-event-cards">
-          <article className="noctive-event-card noctive-event-card-iku">
-            <div className="noctive-event-card-art">
-              <EventArtwork src="/events/iku-after-dark-001.jpg" alt="Official IKU: After Dark 001 event flyer" />
-              <span className="noctive-event-art-index">AFTER DARK / 001</span>
-              <strong>IKU</strong>
-              <span className="noctive-event-art-date">NOV 21 / FRESNO</span>
-            </div>
-            <div className="noctive-event-card-content">
-              <p className="eyebrow">NOVEMBER 21, 2026 / 21+</p>
-              <h2>IKU: AFTER DARK 001</h2>
-              <p>Fulton 55 / Fresno, CA / 9PM–2AM</p>
-              <p>Support: Jole, MVSTY, Dayfish &amp; Skatemesa.</p>
-              <div className="noctive-event-card-actions">
-                <Link className="btn btn-light" href="/events/iku-after-dark-001#tickets">BUY TICKETS</Link>
-              </div>
-            </div>
-          </article>
           <article className="noctive-event-card noctive-event-card-junkie">
             <div className="noctive-event-card-art">
               <EventArtwork src="/events/JUNKIE%20KID%20FLYER%20DRAFT%206%20FINAL%20copy.jpg" alt="Official Junkie Kid: After Dark 002 event flyer" />
@@ -134,6 +115,28 @@ function EventsPage() {
               <p>Noctive × Night Pulze / Jole, Rocky, Vega &amp; Rawny.</p>
               <div className="noctive-event-card-actions">
                 <Link className="btn btn-light" href="/events/junkie-kid-after-dark-002#tickets">BUY TICKETS</Link>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section className="section noctive-events-list" aria-label="Past events">
+        <h2 className="eyebrow">PAST EVENTS</h2>
+        <div className="noctive-event-cards">
+          <article className="noctive-event-card noctive-event-card-iku">
+            <div className="noctive-event-card-art">
+              <EventArtwork src="/events/iku-after-dark-001.jpg" alt="Official IKU: After Dark 001 event flyer" />
+              <span className="noctive-event-art-index">AFTER DARK / 001</span>
+              <strong>IKU</strong>
+              <span className="noctive-event-art-date">NOV 21 / FRESNO</span>
+            </div>
+            <div className="noctive-event-card-content">
+              <p className="eyebrow">NOVEMBER 21, 2026 / PAST EVENT</p>
+              <h2>IKU: AFTER DARK 001</h2>
+              <p>Fulton 55 / Fresno, CA</p>
+              <p>Support: Jole, MVSTY, Dayfish &amp; Skatemesa.</p>
+              <div className="noctive-event-card-actions">
+                <Link className="btn btn-ghost" href="/events/iku-after-dark-001">VIEW RECAP</Link>
               </div>
             </div>
           </article>
@@ -160,7 +163,7 @@ function ArchivePage() {
         <div className="section-index">01 / INDEX</div>
         <div className="archive-list archive-list-page">
           <Link href="/wear" className="archive-row archive-row-active"><span>001</span><strong>AFTER DARK</strong><em>DROP 001 / UPCOMING</em><b>2026 ↗</b></Link>
-          <div className="archive-row archive-row-locked"><span>002</span><strong>EVENTS</strong><em>NO ARCHIVE YET</em><b>—</b></div>
+          <Link href="/events/iku-after-dark-001" className="archive-row archive-row-active"><span>002</span><strong>IKU / AFTER DARK 001</strong><em>PAST EVENT / NOV 21</em><b>2026 ↗</b></Link>
         </div>
       </section>
       <SiteFooter />

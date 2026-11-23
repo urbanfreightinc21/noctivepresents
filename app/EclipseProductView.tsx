@@ -9,7 +9,7 @@ type Color = "black" | "espresso";
 
 const products: Record<Color,{label:string; images:string[]}> = {
   black: {label:"Black", images:["/wear/ezlipse-black-front.webp.png", "/wear/ezlipse-black-back.webp.png"]},
-  espresso: {label:"Espresso", images:["/wear/ezlipse-espresso-front.webp.png", "/wear/ezlipse-espresso-back.webp.png"]},
+  espresso: {label:"Mocha", images:["/wear/ezlipse-espresso-front.webp.png", "/wear/ezlipse-espresso-back.webp.png"]},
 };
 
 export default function EclipseProductView({color,preorderOpen,price,estimatedShip,isTestMode}: {color:Color;preorderOpen:boolean;price:number|null;estimatedShip:string|null;isTestMode:boolean}) {
@@ -76,7 +76,7 @@ export default function EclipseProductView({color,preorderOpen,price,estimatedSh
           <h1 id="ec-product-name">ECLIPSE<br/><span>ZIP-UP HOODIE</span></h1>
           <p className="ec-product-sub">DROP 001 / HEAVYWEIGHT OVERSIZED FLEECE</p>
           <div className="ec-product-price"><span>{price===null?"PRICE TO BE ANNOUNCED":new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(price/100)}</span><small>USD / PRE-ORDER</small></div>
-          <div className="ec-options"><strong>COLOR</strong><div className="ec-color-choices"><Link href="/wear/eclipse/black" aria-current={color==="black"?"page":undefined} className={color==="black"?"is-selected":""}><span className="ec-swatch ec-swatch-black"/>BLACK</Link><Link href="/wear/eclipse/espresso" aria-current={color==="espresso"?"page":undefined} className={color==="espresso"?"is-selected":""}><span className="ec-swatch ec-swatch-espresso"/>ESPRESSO</Link></div></div>
+          <div className="ec-options"><strong>COLOR</strong><div className="ec-color-choices"><Link href="/wear/eclipse/black" aria-current={color==="black"?"page":undefined} className={color==="black"?"is-selected":""}><span className="ec-swatch ec-swatch-black"/>BLACK</Link><Link href="/wear/eclipse/espresso" aria-current={color==="espresso"?"page":undefined} className={color==="espresso"?"is-selected":""}><span className="ec-swatch ec-swatch-espresso"/>MOCHA</Link></div></div>
           <div className="ec-options"><strong>SIZE</strong><div className="ec-sizes">{SIZES.map(v=><button key={v} type="button" className={v===size?"is-selected":""} onClick={()=>setSize(v)} aria-pressed={v===size}>{v}</button>)}</div><p className="ec-size-note">Oversized fit / measurements below. Select your usual size for a relaxed silhouette.</p><a className="ec-measure-link" href="#ec-size-guide">VIEW SIZE GUIDE ↓</a></div>
           {preorderOpen&&stock&&stock[color]<=0&&<p className="ec-size-note" aria-live="polite">SOLD OUT</p>}
           <button type="button" className="ec-preorder-btn" onClick={checkout}

@@ -7,7 +7,7 @@ export function generateStaticParams(){ return [{color:"black"},{color:"espresso
 export async function generateMetadata({params}:{params:Promise<{color:string}>}):Promise<Metadata>{
  const {color}=await params;
  if(color!=="black"&&color!=="espresso") return {title:"NOCTIVE WEAR"};
- return {title:`Eclipse Zip-Up Hoodie — ${color==="black"?"Black":"Espresso"}`,description:`NOCTIVE Eclipse Zip-Up Hoodie in ${color}. After Dark / Drop 001.`};
+ return {title:`Eclipse Zip-Up Hoodie — ${color==="black"?"Black":"Mocha"}`,description:`NOCTIVE Eclipse Zip-Up Hoodie in ${color==="black"?"Black":"Mocha"}. After Dark / Drop 001.`};
 }
 export default async function EclipseProductPage({params}:{params:Promise<{color:string}>}){
  const {color}=await params;

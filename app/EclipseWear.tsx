@@ -14,10 +14,10 @@ const variants = {
     colorClass: "black",
   },
   espresso: {
-    label: "ESPRESSO",
+    label: "MOCHA",
     index: "02",
     back: "/wear/ezlipse-espresso-back.webp.png",
-    title: "Espresso Eclipse Zip-Up Hoodie, back graphic",
+    title: "Mocha Eclipse Zip-Up Hoodie, back graphic",
     colorClass: "espresso",
   },
 } as const;
@@ -44,13 +44,13 @@ export default function EclipseWear() {
           <div className="nvwear-content">
             <div className="nvwear-heading-label"><span className="nvwear-line"/>THE FIRST DROP</div>
             <h1 id="nvwear-title">ECLIPSE<span>.</span></h1>
-            <p className="nvwear-subtitle">ZIP-UP HOODIE / AFTER DARK 001</p>
+            <p className="nvwear-subtitle">ZIP-UP HOODIE / AFTER DARK DROP 001</p>
             <p className="nvwear-intro">An oversized zip-up built around the Eclipse back graphic. Heavyweight fleece, satin-lined hood, signature contour work.</p>
             <div className="nvwear-switch" role="group" aria-label="Choose colorway">
               <span className="nvwear-switch-label">SELECT COLORWAY <span>{active.index} / 02</span></span>
               <div className="nvwear-switch-items">
                 <button type="button" onClick={() => setColor("black")} className={color === "black" ? "nvwear-active" : ""} aria-pressed={color === "black"}><i className="nvwear-dot-black" aria-hidden="true" />BLACK</button>
-                <button type="button" onClick={() => setColor("espresso")} className={color === "espresso" ? "nvwear-active" : ""} aria-pressed={color === "espresso"}><i className="nvwear-dot-espresso" aria-hidden="true" />ESPRESSO</button>
+                <button type="button" onClick={() => setColor("espresso")} className={color === "espresso" ? "nvwear-active" : ""} aria-pressed={color === "espresso"}><i className="nvwear-dot-espresso" aria-hidden="true" />MOCHA</button>
               </div>
             </div>
             <div className="nvwear-buy-row"><strong>$80<span>.00</span></strong><span>PRE-ORDERS OPENING SOON</span></div>

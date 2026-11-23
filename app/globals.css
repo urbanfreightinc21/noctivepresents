@@ -749,3 +749,49 @@ footer { padding: 28px 5vw 38px; display: grid; grid-template-columns: 1fr auto 
 .wear-teaser-art .wear-teaser-hoodie{object-fit:contain;filter:none}
 .wear-teaser-art:has(.wear-teaser-hoodie) .wear-art-shade{background:linear-gradient(180deg,transparent 75%,rgba(0,0,0,.22))}
 .wear-teaser-art:has(.wear-teaser-hoodie) .wear-grid-overlay{opacity:.045}
+
+.drop-hero {
+  min-height: min(880px, 100svh);
+  background: radial-gradient(ellipse at 73% 49%, #26272d, transparent 59%), #080809;
+}
+.drop-hero .hero-orbit { right: 5%; }
+.drop-hero-grid {
+  z-index: 3;
+  width: min(1440px, 100%);
+  padding: 110px 6vw 54px;
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  align-items: center;
+}
+.drop-hero .hero-copy {
+  width: auto;
+  padding: 0;
+  text-align: left;
+  align-items: flex-start;
+}
+.drop-hero h1 { font-size: clamp(3rem, 9vw, 9rem); }
+.drop-hero .hero-kicker,
+.drop-hero .hero-sub { font-size: .875rem; letter-spacing: .16em; }
+.drop-hero-status { margin: 12px 0 0; color: #d4d4d0; }
+.drop-hero .hero-buttons { margin-top: 24px; }
+.drop-hero .btn, .home-event .btn { font-size: .8rem; }
+.drop-hero-art { position: relative; min-width: 0; height: clamp(350px, 52vw, 640px); }
+.drop-hero-art img { object-fit: contain; }
+.home-event { padding-top: clamp(32px, 5vw, 72px); padding-bottom: clamp(32px, 5vw, 72px); }
+.home-event .wear-teaser-card { grid-template-columns: minmax(250px, .75fr) minmax(0, 1.25fr); min-height: 0; }
+.home-event-art { position: relative; aspect-ratio: 4 / 5; background: #080808; }
+.home-event-art img { object-fit: contain; }
+.home-event .wear-teaser-copy { align-items: flex-start; }
+.home-event .eyebrow { font-size: .875rem; letter-spacing: .15em; margin-bottom: 0; }
+.home-event-past { padding-top: 0; }
+
+@media (max-width: 700px) {
+  .drop-hero-grid { grid-template-columns: 1fr; padding: 90px 7vw 28px; }
+  .drop-hero .hero-copy { text-align: center; align-items: center; }
+  .drop-hero h1 { font-size: clamp(3.2rem, 13vw, 6rem); }
+  .drop-hero-art { height: clamp(240px, 70vw, 430px); }
+  .drop-hero { min-height: 0; }
+  .home-event .wear-teaser-card { grid-template-columns: 1fr; }
+  .home-event-art { width: min(65vw, 340px); justify-self: center; margin-top: 20px; }
+  .home-event .wear-teaser-copy { padding: 24px; }
+}
