@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return <main className="about-page">
     <header className="nav subnav">
-      <Link className="nav-brand" href="/" aria-label="Noctive home"><Image src="/noctive-logo.png" alt="" width={34} height={34} priority /><span>NOCTIVE</span></Link>
+      <Link className="nav-brand" href="/" aria-label="Noctive home"><Image src="/noctive-bat.png" alt="" width={34} height={34} priority /><span>NOCTIVE</span></Link>
       <nav aria-label="Primary navigation"><Link href="/wear">Wear</Link><Link href="/events">Events</Link><Link href="/about">About</Link><Link href="/contact">Contact</Link></nav>
       <Link className="nav-social" href="/">Close ↙</Link>
     </header>
@@ -28,6 +28,6 @@ export default function AboutPage() {
 
     <section className="about-closing"><div className="about-closing-line">NOCTIVE / 2026 / CALIFORNIA / INDEPENDENT</div><h2>MAKE WHAT<br /><span>YOU WANT TO EXIST.</span></h2><p>That is the idea. Everything else follows from it.</p></section>
 
-    <footer><div className="footer-brand"><Image src="/noctive-logo.png" alt="" width={54} height={54} /><span>NOCTIVE</span></div><div className="footer-divisions">WEAR / EVENTS / ABOUT / CONTACT</div><div className="footer-legal"><Link href="/privacy">PRIVACY</Link><Link href="/terms">TERMS</Link></div></footer>
+    <footer><div className="footer-brand"><Image src="/noctive-bat.png" alt="" width={54} height={54} /><span>NOCTIVE</span></div><div className="footer-divisions">WEAR / EVENTS / ABOUT / CONTACT</div><div className="footer-legal"><Link href="/privacy">PRIVACY</Link><Link href="/terms">TERMS</Link></div></footer>
   </main>;
 }

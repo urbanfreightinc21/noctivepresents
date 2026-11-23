@@ -763,3 +763,7 @@ footer { padding: 28px 5vw 38px; display: grid; grid-template-columns: 1fr auto 
   .home-event-art { width: min(65vw, 340px); justify-self: center; margin-top: 20px; }
   .home-event .wear-teaser-copy { padding: 24px; }
 }
+
+.hero-logo {
+  mask: url("/noctive-bat.png") center / contain no-repeat luminance;
+}

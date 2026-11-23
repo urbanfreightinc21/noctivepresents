@@ -7,7 +7,7 @@ function SiteHeader() {
   return (
     <header className="nav subnav">
       <Link className="nav-brand" href="/" aria-label="Noctive home">
-        <Image src="/noctive-logo.png" alt="" width={34} height={34} priority />
+        <Image src="/noctive-bat.png" alt="" width={34} height={34} priority />
         <span>NOCTIVE</span>
       </Link>
       <nav aria-label="Primary navigation">
@@ -25,7 +25,7 @@ function SiteFooter() {
   return (
     <footer>
       <div className="footer-brand">
-        <Image src="/noctive-logo.png" alt="" width={54} height={54} />
+        <Image src="/noctive-bat.png" alt="" width={54} height={54} />
         <span>NOCTIVE</span>
       </div>
       <div className="footer-divisions">WEAR / EVENTS / ABOUT / CONTACT</div>

@@ -22,13 +22,13 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/noctive-logo.png",
+        url: "/noctive-bat.png",
         type: "image/png",
-        sizes: "1024x1024",
+        sizes: "1254x1254",
       },
     ],
-    shortcut: "/noctive-logo.png",
-    apple: "/noctive-logo.png",
+    shortcut: "/noctive-bat.png",
+    apple: "/noctive-bat.png",
   },
   openGraph: {
     type: "website",
@@ -56,7 +56,7 @@ const structuredData = {
       name: "NOCTIVE",
       alternateName: ["Noctive Presents", "NOCTIVE Presents"],
       url: `${siteUrl}/`,
-      logo: `${siteUrl}/noctive-logo.png`,
+      logo: `${siteUrl}/noctive-bat.png`,
       description:
         "NOCTIVE is an independent creative project based in California, spanning limited apparel and selective live experiences.",
       sameAs: ["https://www.instagram.com/noctivepresents/"],
