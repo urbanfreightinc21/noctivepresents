@@ -1,7 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import HomeEvent from "./HomeEvent";
-import Waitlist from "./Waitlist";
+import { useEffect, useRef, useState } from "react";
 
 const INSTAGRAM = "https://www.instagram.com/noctivepresents/";
 const divisions = [
@@ -11,30 +13,57 @@ const divisions = [
 ];
 
 export default function Home() {
+  const videoRef = useRef<HTMLVideoElement>(null); const [soundOn,setSoundOn]=useState(false);
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Instagram's iOS browser can ignore the first autoplay request while the
+    // page or video is still loading. Retry at each useful lifecycle point.
+    video.muted = true;
+    video.defaultMuted = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+
+    const tryPlay = () => {
+      if (!video.paused) return;
+      void video.play().catch(() => {
+        // A first touch/pointer event below provides the user gesture iOS may
+        // require. The poster remains visible if playback is still blocked.
+      });
+    };
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "visible") tryPlay();
+    };
+
+    tryPlay();
+    const retryTimers = [250, 750, 1500, 3000].map((delay) =>
+      window.setTimeout(tryPlay, delay),
+    );
+    video.addEventListener("loadedmetadata", tryPlay);
+    video.addEventListener("canplay", tryPlay);
+    window.addEventListener("pageshow", tryPlay);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    document.addEventListener("touchstart", tryPlay, { passive: true, once: true });
+    document.addEventListener("pointerdown", tryPlay, { passive: true, once: true });
+
+    return () => {
+      retryTimers.forEach(window.clearTimeout);
+      video.removeEventListener("loadedmetadata", tryPlay);
+      video.removeEventListener("canplay", tryPlay);
+      window.removeEventListener("pageshow", tryPlay);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      document.removeEventListener("touchstart", tryPlay);
+      document.removeEventListener("pointerdown", tryPlay);
+    };
+  }, []);
+  const toggleSound=()=>{if(!videoRef.current)return;videoRef.current.muted=soundOn;setSoundOn(!soundOn);videoRef.current.play().catch(()=>{});};
   return <main>
     <header className="nav"><Link className="nav-brand" href="/" aria-label="Noctive home"><Image src="/noctive-logo.png" alt="" width={34} height={34} priority/><span>NOCTIVE</span></Link><nav aria-label="Primary navigation"><Link href="/wear">Wear</Link><Link href="/events">Events</Link><Link href="/about">About</Link><Link href="/contact">Contact</Link></nav><a className="nav-social" href={INSTAGRAM} target="_blank" rel="noreferrer">Instagram ↗</a></header>
-    <section className="hero drop-hero" id="top" aria-labelledby="drop-title">
-      <div className="noise" aria-hidden="true" />
-      <div className="hero-orbit hero-orbit-a" aria-hidden="true" />
-      <div className="hero-orbit hero-orbit-b" aria-hidden="true" />
-      <div className="drop-hero-grid">
-        <div className="hero-copy">
-          <p className="hero-kicker">AFTER DARK COLLECTION / DROP 001</p>
-          <h1 id="drop-title"><span>ECLIPSE</span><strong>ZIP-UP</strong></h1>
-          <p className="hero-sub">BLACK / MOCHA</p>
-          <p className="drop-hero-status">Pre-orders opening soon</p>
-          <div className="hero-buttons"><Link className="btn btn-light" href="/wear">PREVIEW THE DROP</Link></div>
-        </div>
-        <div className="drop-hero-art">
-          <Image src="/wear/ezlipse-black-back.webp.png" alt="Black Eclipse Zip-Up hoodie with the After Dark back graphic" fill preload sizes="(max-width: 700px) 86vw, 53vw" />
-        </div>
-      </div>
-    </section>
+    <section className="hero video-drop-hero" id="top"><video ref={videoRef} autoPlay muted loop playsInline preload="auto" poster="/noctive-poster.png"><source src="/noctive-hero.mp4" type="video/mp4"/></video><div className="hero-overlay"/><div className="scanline"/><div className="noise"/><div className="hero-orbit hero-orbit-a"/><div className="hero-orbit hero-orbit-b"/><div className="hero-corner hero-corner-left">NOCTIVE / 2026<br/>INDEPENDENT / CALIFORNIA</div><div className="hero-corner hero-corner-right">NOCTIVE WEAR<br/>AFTER DARK COLLECTION</div><div className="hero-copy"><Image className="hero-logo" src="/noctive-logo.png" alt="Noctive" width={260} height={260} priority/><p className="hero-kicker">AFTER DARK COLLECTION / DROP 001</p><h1><span>ECLIPSE</span><strong>ZIP-UP</strong></h1><p className="hero-sub">PRE-ORDERS OPENING SOON</p><div className="hero-buttons"><Link className="btn btn-light" href="/wear">PREVIEW THE DROP</Link></div></div><button className="sound-toggle" onClick={toggleSound}>{soundOn?"SOUND ON":"SOUND OFF"}</button><a className="scroll" href="#next-event"><span/>Scroll</a></section>
     <HomeEvent />
-    <HomeEvent past />
     <section className="world section" id="world"><div className="section-index">00 / NOCTIVE</div><div className="world-grid"><div><p className="eyebrow">NOCTIVE / ONE POINT OF VIEW</p><h2>WE CREATE WHAT<br/><span>WE WANT TO SEE.</span></h2></div><div className="copy-block"><p><strong className="inline-strong">NOCTIVE</strong>, also known as <strong className="inline-strong">Noctive Presents</strong>, is an independent creative project based in California. We make limited apparel and build selective live experiences around the things we genuinely want to wear, see and be part of.</p><strong>IF IT FEELS RIGHT FOR NOCTIVE, WE MAKE IT.</strong></div></div></section>
     <section className="divisions section"><div className="section-index">01 / NOCTIVE</div><div className="division-grid division-grid-weighted">{divisions.map(d=><Link className={`division-card ${d.featured?"division-card-featured":""}`} href={d.href} key={d.name}><div className="division-scan"/><div className="division-topline"><span>{d.number}</span><span>{d.status}</span></div><div className="division-name">{d.name}</div><p>{d.copy}</p><span className="division-enter">ENTER ↘</span></Link>)}</div></section>
-    <section className="wear-teaser section" id="wear"><div className="section-index">02 / WEAR</div><div className="wear-teaser-card"><div className="wear-teaser-art"><Image className="wear-teaser-hoodie" src="/wear/ezlipse-espresso-back.webp.png" alt="Mocha Eclipse zip-up hoodie, back view featuring the After Dark 001 graphic" fill sizes="(max-width: 900px) 100vw, 34vw"/><div className="wear-art-shade"/><div className="wear-grid-overlay"/><div className="wear-code">NCTV / W-001 / 26</div></div><div className="wear-teaser-copy"><p className="eyebrow">AFTER DARK / DROP 001 / WEAR</p><h2>DROP 001<br/><span>COMING SOON.</span></h2><p>Join the access list to hear when Eclipse Zip-Up pre-orders open.</p><Waitlist compact/><Link className="text-link" href="/wear">EXPLORE DROP 001 ↗</Link></div></div></section>
     <section className="signal section" aria-label="Noctive statement"><div className="signal-track"><span>NOCTIVE</span><i>WE CREATE WHAT WE WANT TO SEE</i><span>DROP 001</span><i>NOCTIVE</i><span>AFTER DARK</span><i>DROP 001</i></div></section>
     <section className="system section"><div className="section-index">03 / STATUS</div><div className="system-grid"><div className="system-lead"><p className="eyebrow">CURRENT STATUS</p><h2>WHAT&apos;S<br/><span>ACTIVE.</span></h2></div><div className="system-list"><Link href="/events" className="system-row"><span>01</span><strong>JUNKIE KID / AFTER DARK 002</strong><em>JAN 16 / LOS ARCOS / FRESNO</em><b>TICKETS ↗</b></Link><Link href="/wear" className="system-row"><span>02</span><strong>AFTER DARK</strong><em>DROP 001 / ACCESS OPEN</em><b>WEAR ↗</b></Link><Link href="/about" className="system-row"><span>03</span><strong>ABOUT</strong><em>WHAT IS NOCTIVE</em><b>READ ↗</b></Link></div></div></section>
     <section className="contact section"><div className="section-index">04 / CONTACT</div><div className="contact-grid"><div><p className="eyebrow">NOCTIVE / INQUIRIES</p><h2>GET IN<br/>TOUCH.</h2></div><div className="contact-links"><a href="mailto:hello@noctivepresents.com">GENERAL <span>hello@noctivepresents.com</span></a><a href="mailto:booking@noctivepresents.com">BOOKING <span>booking@noctivepresents.com</span></a><a href={INSTAGRAM} target="_blank" rel="noreferrer">INSTAGRAM <span>@noctivepresents ↗</span></a><Link href="/contact">CONTACT PAGE <span>OPEN ↗</span></Link></div></div></section>
