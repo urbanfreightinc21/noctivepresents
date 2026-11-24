@@ -53,16 +53,16 @@ export default function EclipseWear() {
                 <button type="button" onClick={() => setColor("espresso")} className={color === "espresso" ? "nvwear-active" : ""} aria-pressed={color === "espresso"}><i className="nvwear-dot-espresso" aria-hidden="true" />MOCHA</button>
               </div>
             </div>
-            <div className="nvwear-buy-row"><strong>$80<span>.00</span></strong><span>PRE-ORDERS OPENING SOON</span></div>
-            <Link className="nvwear-link" href={`/wear/eclipse/${color}`}>VIEW {active.label} HOODIE <span>VIEW DETAILS</span></Link>
-            <p className="nvwear-smallprint">Standard U.S. shipping or free local handoff by arrangement when ordering opens.</p>
+            <div className="nvwear-buy-row"><strong>$80<span>.00</span></strong><span>PRE-ORDERS ARE LIVE</span></div>
+            <Link className="nvwear-link" href={`/wear/eclipse/${color}`}>PRE-ORDER {active.label} <span>SELECT SIZE</span></Link>
+            <p className="nvwear-smallprint">Standard U.S. shipping or free local handoff by arrangement.</p>
           </div>
         </div>
       </section>
       <section className="nvwear-lower section" id="access" aria-label="Release updates">
         <div className="nvwear-lower-id">RELEASE / 001</div>
         <div className="nvwear-lower-grid">
-          <div><span className="nvwear-lower-kicker">NOCTIVE AFTER DARK</span><h2>FIRST<br/>ACCESS.</h2><p>Sign up to be notified when pre-orders open.</p></div>
+          <div><span className="nvwear-lower-kicker">NOCTIVE AFTER DARK</span><h2>DROP<br/>UPDATES.</h2><p>Sign up for future Noctive drops.</p></div>
           <div className="nvwear-signup"><Waitlist /></div>
         </div>
         <div className="nvwear-footerline"><span>NOCTIVE WEAR</span><span>ECLIPSE ZIP-UP</span><span>DROP 001</span></div>
