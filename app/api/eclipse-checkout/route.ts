@@ -61,7 +61,7 @@ export async function POST(request:NextRequest) {
       automatic_tax:{enabled:process.env.STRIPE_AUTOMATIC_TAX==="true"},
       metadata:{order_id:orderId,product:"eclipse-zip-up-hoodie",color,size,drop:"001",estimated_ship_date:estimatedShip,delivery_method:deliveryMethod},
       payment_intent_data:{metadata:{order_id:orderId,product:"eclipse-zip-up-hoodie",color,size,delivery_method:deliveryMethod}},
-      success_url:`${request.nextUrl.origin}/wear/eclipse/${color}?order=success&session_id={CHECKOUT_SESSION_ID}`,
+      success_url:`${request.nextUrl.origin}/wear/confirmation?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url:`${request.nextUrl.origin}/wear/eclipse/${color}?order=cancelled`,
     },{idempotencyKey:`eclipse-${orderId}`});
     if(!session.url)throw new Error("Stripe Checkout URL unavailable");
